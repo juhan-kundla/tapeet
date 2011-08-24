@@ -8,9 +8,31 @@
 	<description>The Tapeet framework -- parent POM</description>
 
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.phpmaven</groupId>
+				<artifactId>maven-php-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<compileArgs>-d auto_prepend_file=tapeet/Bootstrap.php</compileArgs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
 	<modules>
 		<module>core</module>
 	</modules>
+
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>release-repo1.php-maven.org</id>
+			<url>http://repo1.php-maven.org/release</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 
 	<properties>
