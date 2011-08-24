@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>com.google.code.tapeet</groupId>
+        <artifactId>parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>core</artifactId>
+	<packaging>php</packaging>
+	<name>tapeet-core</name>
+	<description>The Tapeet framework -- core classes and services</description>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.phpmaven</groupId>
+				<artifactId>maven-php-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<compileArgs>-d auto_prepend_file=tapeet/Bootstrap.php</compileArgs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>release-repo1.php-maven.org</id>
+			<url>http://repo1.php-maven.org/release</url>
+		</pluginRepository>
+	</pluginRepositories>
+</project>
