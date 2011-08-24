@@ -24,6 +24,7 @@
 
 	<modules>
 		<module>core</module>
+		<module>queue</module>
 		<module>web</module>
 	</modules>
 
