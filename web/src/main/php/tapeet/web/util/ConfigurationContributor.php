@@ -7,7 +7,7 @@ class ConfigurationContributor {
 
 
 	function contribute() {
-		$application = $_SERVER['MVC_APPLICATION'];
+		$application = $_SERVER['TAPEET_APPLICATION'];
 
 		$configuration = array_merge(
 				parse_ini_file($application . '.default.ini'),
