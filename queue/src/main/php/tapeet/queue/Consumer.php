@@ -3,7 +3,7 @@ namespace tapeet\queue;
 
 
 use Exception;
-use tapeet\web\FilterChain;
+use tapeet\FilterChain;
 
 
 class Consumer {

@@ -2,7 +2,7 @@
 namespace tapeet\queue\util;
 
 
-use tapeet\web\ioc\IOCProxy;
+use tapeet\ioc\IOCProxy;
 
 
 class HandlerFactory {
@@ -23,4 +23,3 @@ class HandlerFactory {
 	}
 
 }
-?>
