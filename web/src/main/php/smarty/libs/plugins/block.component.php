@@ -1,8 +1,8 @@
 <?php
 
 
-use tapeet\web\ioc\IOCProxy;
-use tapeet\web\ioc\ServiceLocator;
+use \tapeet\ioc\IOCProxy;
+use \tapeet\ioc\ServiceLocator;
 
 
 function smarty_block_component($params, $content, &$smarty, &$repeat) {
@@ -75,6 +75,3 @@ class ComponentBlock {
 
 
 }
-
-
-?>

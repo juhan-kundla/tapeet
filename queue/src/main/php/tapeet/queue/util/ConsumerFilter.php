@@ -2,8 +2,8 @@
 namespace tapeet\queue\util;
 
 
-use tapeet\Filter;
-use tapeet\web\ioc\IOCProxy;
+use \tapeet\Filter;
+use \tapeet\ioc\IOCProxy;
 
 
 class ConsumerFilter implements Filter {
@@ -14,11 +14,10 @@ class ConsumerFilter implements Filter {
 
 
 	function doFilter($chain) {
-		$consumer = new IOCProxy('tapeet\queue\Consumer');
+		$consumer = new IOCProxy('\tapeet\queue\Consumer');
 		$consumer->id = $this->consumerId;
 		$consumer->run();
 		$chain->doFilter();
 	}
 
 }
-?>

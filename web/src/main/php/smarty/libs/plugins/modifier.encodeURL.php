@@ -1,6 +1,6 @@
 <?php
 
-require_once 'tapeet/web/ioc/ServiceLocator.php';
+use \tapeet\ioc\ServiceLocator;
 
 
 function smarty_modifier_encodeURL($string) {
@@ -8,4 +8,3 @@ function smarty_modifier_encodeURL($string) {
 	$response = $serviceLocator->getService('response');
 	return $response->encodeURL(strval($string));
 }
-?>

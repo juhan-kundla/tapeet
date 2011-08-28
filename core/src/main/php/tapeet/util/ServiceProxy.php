@@ -1,10 +1,12 @@
 <?php
-namespace tapeet\web\annotation;
+namespace tapeet\util;
 
 
-use tapeet\web\ioc\ServiceLocator;
+use \tapeet\ioc\ServiceLocator;
 
-
+/**
+ * TODO: Remove this, use LazyObject instead
+ */
 class ServiceProxy {
 
 
@@ -49,4 +51,3 @@ class ServiceProxy {
 	}
 
 }
-?>

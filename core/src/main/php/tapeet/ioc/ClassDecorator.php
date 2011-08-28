@@ -1,5 +1,5 @@
 <?php
-namespace tapeet\web\ioc;
+namespace tapeet\ioc;
 
 
 interface ClassDecorator {
@@ -11,4 +11,3 @@ interface ClassDecorator {
 	function onConstruct($type, $chain);
 
 }
-?>

@@ -3,9 +3,9 @@
 
 require_once 'addendum/annotations.php';
 
-use tapeet\web\ioc\ClassDecorator;
-use tapeet\web\ioc\MethodDecorator;
-use tapeet\web\ioc\ServiceLocator;
+use tapeet\ioc\ClassDecorator;
+use tapeet\ioc\MethodDecorator;
+use tapeet\ioc\ServiceLocator;
 use tapeet\web\security\ACL;
 use tapeet\web\security\Group;
 

@@ -1,5 +1,5 @@
 <?php
-namespace tapeet\web\ioc;
+namespace tapeet\ioc;
 
 
 require_once 'addendum/annotations.php';
@@ -64,4 +64,3 @@ class IOCProxy {
 	}
 
 }
-?>

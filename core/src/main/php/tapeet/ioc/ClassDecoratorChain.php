@@ -1,5 +1,5 @@
 <?php
-namespace tapeet\web\ioc;
+namespace tapeet\ioc;
 
 
 class ClassDecoratorChain {
@@ -32,4 +32,3 @@ class ClassDecoratorChain {
 
 
 }
-?>

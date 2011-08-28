@@ -1,5 +1,5 @@
 <?php
-namespace tapeet\web\ioc;
+namespace tapeet\ioc;
 
 
 class ServiceLocator {
@@ -51,4 +51,3 @@ class ServiceLocator {
 	}
 
 }
-?>

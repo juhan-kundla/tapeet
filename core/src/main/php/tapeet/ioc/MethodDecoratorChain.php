@@ -1,5 +1,5 @@
 <?php
-namespace tapeet\web\ioc;
+namespace tapeet\ioc;
 
 
 class MethodDecoratorChain {
@@ -24,4 +24,3 @@ class MethodDecoratorChain {
 
 
 }
-?>

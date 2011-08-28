@@ -20,4 +20,3 @@ class Annotation_Required extends Annotation implements PropertyDecorator {
 	}
 
 }
-?>

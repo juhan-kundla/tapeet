@@ -1,8 +1,8 @@
 <?php
-namespace tapeet\web;
+namespace tapeet;
 
 
-use tapeet\web\ioc\IOCProxy;
+use \tapeet\ioc\IOCProxy;
 
 
 class FilterChain {
@@ -22,4 +22,3 @@ class FilterChain {
 
 
 }
-?>

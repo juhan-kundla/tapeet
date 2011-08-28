@@ -3,10 +3,10 @@
 
 require_once 'addendum/annotations.php';
 
-use tapeet\ioc\PropertyDecorator;
-use tapeet\web\annotation\ServiceProxy;
-use tapeet\web\ioc\ClassDecorator;
-use tapeet\web\ioc\ServiceLocator;
+use \tapeet\ioc\PropertyDecorator;
+use \tapeet\ioc\ClassDecorator;
+use \tapeet\ioc\ServiceLocator;
+use \tapeet\util\ServiceProxy;
 
 
 class Annotation_Service extends Annotation implements ClassDecorator, PropertyDecorator {
@@ -52,4 +52,3 @@ class Annotation_Service extends Annotation implements ClassDecorator, PropertyD
 	}
 
 }
-?>

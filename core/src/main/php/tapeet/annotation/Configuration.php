@@ -4,7 +4,7 @@
 require_once 'addendum/annotations.php';
 
 use tapeet\ioc\PropertyDecorator;
-use tapeet\web\ioc\ServiceLocator;
+use tapeet\ioc\ServiceLocator;
 
 
 class Annotation_Configuration extends Annotation implements PropertyDecorator {
@@ -25,4 +25,3 @@ class Annotation_Configuration extends Annotation implements PropertyDecorator {
 	}
 
 }
-?>

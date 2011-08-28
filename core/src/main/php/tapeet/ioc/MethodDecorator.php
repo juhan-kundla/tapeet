@@ -1,5 +1,5 @@
 <?php
-namespace tapeet\web\ioc;
+namespace tapeet\ioc;
 
 
 interface MethodDecorator {
@@ -8,4 +8,3 @@ interface MethodDecorator {
 	function onInvoke($object, $method, $args, $chain);
 
 }
-?>

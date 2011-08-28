@@ -3,8 +3,8 @@
 
 require_once 'addendum/annotations.php';
 
-use tapeet\web\ioc\ClassDecorator;
-use tapeet\web\ioc\ServiceLocator;
+use tapeet\ioc\ClassDecorator;
+use tapeet\ioc\ServiceLocator;
 
 
 class Annotation_Contributor extends Annotation implements ClassDecorator {
