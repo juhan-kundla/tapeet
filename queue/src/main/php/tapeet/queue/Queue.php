@@ -16,8 +16,8 @@ class Queue {
 
 
 	function add($event) {
-		$query = '
-				insert into queue.event (
+		$query = sprintf('
+				insert into %s.event (
 						consumer_id
 						,payload
 						,queue_id
@@ -28,9 +28,9 @@ class Queue {
 							,?
 							,queue_id
 							,?
-						from queue.queue_consumer
+						from %s.queue_consumer
 						where queue_id = ?
-			';
+			', $this->schema, $this->schema);
 
 		$statement = $this->connection->prepare($query);
 		if (! $statement) {
@@ -58,8 +58,8 @@ class Queue {
 	function poll($consumer) {
 		$event = null;
 
-		$query = '
-				UPDATE queue.event
+		$query = sprintf('
+				UPDATE %s.event
 						SET in_process = NOW()
 						WHERE
 								in_process IS NULL
@@ -67,7 +67,7 @@ class Queue {
 								AND consumer_id = ?
 						ORDER BY id
 						LIMIT 1
-			';
+			', $this->schema);
 		$statement = $this->connection->prepare($query);
 		if (! $statement) {
 			throw new Exception($this->connection->error);
@@ -84,16 +84,16 @@ class Queue {
 			throw $e;
 		}
 
-		$query = '
+		$query = sprintf('
 				SELECT id, payload, type
-						FROM queue.event
+						FROM %s.event
 						WHERE
 								in_process IS NOT NULL
 								AND processed IS NULL
 								AND queue_id = ?
 								AND consumer_id = ?
 						LIMIT 1
-			';
+			', $this->schema);
 		$statement = $this->connection->prepare($query);
 		if (! $statement) {
 			throw new Exception($this->connection->error);
@@ -121,14 +121,14 @@ class Queue {
 
 
 	function setError($event, $error) {
-		$query = '
-				UPDATE queue.event SET
+		$query = sprintf('
+				UPDATE %s.event SET
 						 in_process = NULL
 						,processed = NULL
 						,errors = errors + 1
 						,last_error = ?
 						WHERE id = ?
-			';
+			', $this->schema);
 		$statement = $this->connection->prepare($query);
 		if (! $statement) {
 			throw new Exception($this->connection->error);
@@ -148,11 +148,11 @@ class Queue {
 
 
 	function setProcessed($event) {
-		$query = '
-				UPDATE queue.event
+		$query = sprintf('
+				UPDATE %s.event
 						SET processed = NOW()
 						WHERE id = ?
-			';
+			', $this->schema);
 		$statement = $this->connection->prepare($query);
 		if (! $statement) {
 			throw new Exception($this->connection->error);
@@ -171,4 +171,3 @@ class Queue {
 	}
 
 }
-?>
