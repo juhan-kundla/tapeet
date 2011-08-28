@@ -32,7 +32,7 @@ class Consumer {
 			try {
 				$event = $this->queue->poll($this->id);
 
-				if ($event != null) {
+				if ($event !== null) {
 					$this->logger->debug(sprintf('Consumer %s is processing event type: %s -> %s (%s)', $this->id, $this->queue->id, $event->type, $event->id));
 					$this->serviceLocator->addService('event', $event);
 					$handlerChain = new FilterChain();
@@ -56,7 +56,7 @@ class Consumer {
 				}
 
 				try {
-					if ($event != null) {
+					if ($event !== null) {
 						$this->queue->setError($event, $e);
 						$this->connection->commit();
 					}
@@ -74,4 +74,3 @@ class Consumer {
 	}
 
 }
-?>
