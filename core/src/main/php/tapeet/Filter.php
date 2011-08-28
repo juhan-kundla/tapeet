@@ -1,5 +1,5 @@
 <?php
-namespace tapeet\web;
+namespace tapeet;
 
 
 interface Filter {
@@ -7,6 +7,4 @@ interface Filter {
 
 	function doFilter($chain);
 
-
 }
-?>

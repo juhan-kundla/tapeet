@@ -2,12 +2,12 @@
 namespace tapeet\web\util;
 
 
-use ErrorException;
-use Exception;
-use tapeet\web\Filter;
-use tapeet\web\NotFoundException;
-use tapeet\web\Response;
-use tapeet\web\security\AccessDeniedException;
+use \ErrorException;
+use \Exception;
+use \tapeet\Filter;
+use \tapeet\web\NotFoundException;
+use \tapeet\web\Response;
+use \tapeet\web\security\AccessDeniedException;
 
 
 class ErrorHandlerFilter implements Filter {

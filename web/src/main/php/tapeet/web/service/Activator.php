@@ -2,7 +2,7 @@
 namespace tapeet\web\service;
 
 
-use tapeet\web\Filter;
+use tapeet\Filter;
 
 
 class Activator implements Filter {

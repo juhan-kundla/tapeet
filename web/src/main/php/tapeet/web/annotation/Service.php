@@ -3,9 +3,9 @@
 
 require_once 'addendum/annotations.php';
 
+use tapeet\ioc\PropertyDecorator;
 use tapeet\web\annotation\ServiceProxy;
 use tapeet\web\ioc\ClassDecorator;
-use tapeet\web\ioc\PropertyDecorator;
 use tapeet\web\ioc\ServiceLocator;
 
 

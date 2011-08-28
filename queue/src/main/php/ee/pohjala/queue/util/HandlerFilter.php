@@ -3,7 +3,7 @@ namespace tapeet\queue\util;
 
 
 use Exception;
-use tapeet\web\Filter;
+use tapeet\Filter;
 
 
 class HandlerFilter implements Filter {

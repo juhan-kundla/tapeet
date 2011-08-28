@@ -2,7 +2,7 @@
 namespace tapeet\queue\util;
 
 
-use tapeet\web\Filter;
+use tapeet\Filter;
 
 require_once 'System/Daemon.php';
 

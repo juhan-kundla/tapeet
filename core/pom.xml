@@ -11,4 +11,13 @@
 	<packaging>php</packaging>
 	<name>tapeet-core</name>
 	<description>The Tapeet framework -- core classes and services</description>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>com.google.code</groupId>
+			<artifactId>addendum</artifactId>
+			<version>0.4.0</version>
+		</dependency>
+	</dependencies>
 </project>

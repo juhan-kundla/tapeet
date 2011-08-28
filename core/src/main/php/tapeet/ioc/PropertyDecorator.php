@@ -1,5 +1,5 @@
 <?php
-namespace tapeet\web\ioc;
+namespace tapeet\ioc;
 
 
 interface PropertyDecorator {
@@ -8,4 +8,3 @@ interface PropertyDecorator {
 	function onInit($object, $property, $chain);
 
 }
-?>

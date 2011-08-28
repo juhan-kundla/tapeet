@@ -3,8 +3,8 @@
 
 require_once 'addendum/annotations.php';
 
+use tapeet\ioc\PropertyDecorator;
 use tapeet\web\Parameter;
-use tapeet\web\ioc\PropertyDecorator;
 
 
 class Annotation_Parameter extends Annotation implements PropertyDecorator {

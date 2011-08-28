@@ -2,9 +2,9 @@
 namespace tapeet\web\util;
 
 
-use Exception;
-use tapeet\web\Filter;
-use mysqli;
+use \Exception;
+use \tapeet\Filter;
+use \mysqli;
 
 
 class ConnectionFilter implements Filter {
@@ -55,6 +55,4 @@ class ConnectionFilter implements Filter {
 		}
 	}
 
-
 }
-?>
