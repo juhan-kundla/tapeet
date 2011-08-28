@@ -44,6 +44,33 @@
 	</pluginRepositories>
 
 
+	<profiles>
+		<profile>
+			<id>integration-test</id>
+
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.phpmaven</groupId>
+						<artifactId>maven-php-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>integration-test</id>
+								<goals><goal>phpunit</goal></goals>
+								<phase>integration-test</phase>
+								<configuration>
+									<testDirectory>/src/it/php</testDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
