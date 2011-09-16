@@ -1,0 +1,51 @@
+connection:
+    class: \mysqli
+    constructorArgs: [mysql, queue_test, foo, queue_test]
+
+
+consumer:
+    class: \tapeet\queue\Consumer
+    properties:
+        connection: $connection
+        filters: [$handlerFilter]
+        id: test
+        logger: $logger
+        queue: $queue
+        sleeper: $sleeper
+
+
+consumerFilter:
+    class: \tapeet\queue\util\ConsumerFilter
+    properties:
+        consumer: $consumer
+
+
+handlerFactory:
+    class: \tapeet\queue\util\HandlerFactory
+    properties:
+        applicationPackage: \tapeet\queue
+        logger: $logger
+
+
+handlerFilter:
+    class: \tapeet\queue\util\HandlerFilter
+    properties:
+        event: $event
+        handlerFactory: $handlerFactory
+
+
+logger:
+    class: \tapeet\queue\MockLogger
+
+
+queue:
+    class: \tapeet\queue\Queue
+    properties:
+        connection: $connection
+        id: test
+        logger: $logger
+        schema: queue_test
+
+
+sleeper:
+    class: \tapeet\queue\MockSleeper

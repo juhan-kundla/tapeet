@@ -9,14 +9,11 @@ use \tapeet\ioc\IOCProxy;
 class ConsumerFilter implements Filter {
 
 
-	/** @Configuration('queue_consumer_id') */
-	public $consumerId;
+	public $consumer;
 
 
 	function doFilter($chain) {
-		$consumer = new IOCProxy('\tapeet\queue\Consumer');
-		$consumer->id = $this->consumerId;
-		$consumer->run();
+		$this->consumer->run();
 		$chain->doFilter();
 	}
 

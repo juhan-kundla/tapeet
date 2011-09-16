@@ -9,9 +9,7 @@ use tapeet\Filter;
 class HandlerFilter implements Filter {
 
 
-	/** @Service */
 	public $event;
-	/** @Service */
 	public $handlerFactory;
 	/** @ServiceLocator */
 	public $serviceLocator;

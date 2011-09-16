@@ -8,11 +8,10 @@ use Exception;
 class Queue {
 
 
-	/** @Service */
 	public $connection;
 	public $id;
-	/** @Service */
 	public $logger;
+	public $schema;
 
 
 	function add($event) {

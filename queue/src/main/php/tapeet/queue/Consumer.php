@@ -10,17 +10,12 @@ class Consumer {
 
 
 	public $id;
-	/** @Service */
 	public $connection;
-	/** @Service */
-	public $handlerChainFilters;
-	/** @Service */
+	/** @Context */
+	public $context;
+	public $filters;
 	public $logger;
-	/** @Service */
 	public $queue;
-	/** @ServiceLocator */
-	public $serviceLocator;
-	/** @Service */
 	public $sleeper;
 
 
@@ -34,9 +29,9 @@ class Consumer {
 
 				if ($event !== null) {
 					$this->logger->debug(sprintf('Consumer %s is processing event type: %s -> %s (%s)', $this->id, $this->queue->id, $event->type, $event->id));
-					$this->serviceLocator->addService('event', $event);
+					$this->context->add('event', $event);
 					$handlerChain = new FilterChain();
-					$handlerChain->filters = $this->handlerChainFilters;
+					$handlerChain->filters = $this->filters;
 					$handlerChain->doFilter();
 					$this->queue->setProcessed($event);
 				}

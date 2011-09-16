@@ -8,9 +8,7 @@ use tapeet\ioc\IOCProxy;
 class HandlerFactory {
 
 
-	/** @Configuration('application_package') */
 	public $applicationPackage;
-	/** @Service */
 	public $logger;
 
 

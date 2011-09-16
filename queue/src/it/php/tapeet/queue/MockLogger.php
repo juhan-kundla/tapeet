@@ -6,12 +6,12 @@ class MockLogger {
 
 
 	function debug($msg) {
-		echo 'DEBUG: ' . $msg;
+		echo 'DEBUG: ' . $msg . '\n';
 	}
 
 
 	function warn($msg) {
-		echo 'WARN: ' . $msg;
+		echo 'WARN: ' . $msg . '\n';
 	}
 
 }
