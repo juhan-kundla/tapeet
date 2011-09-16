@@ -5,7 +5,7 @@ namespace tapeet\ioc;
 require_once 'addendum/annotations.php';
 
 
-use ReflectionAnnotatedClass;
+use \ReflectionAnnotatedClass;
 
 
 class IOCProxy {
