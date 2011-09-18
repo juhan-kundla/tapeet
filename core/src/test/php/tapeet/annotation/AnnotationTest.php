@@ -8,7 +8,7 @@ require_once 'tapeet/annotation/TestAnnotation.php';
 use \PHPUnit_Framework_TestCase;
 
 
-class ClassLoaderTest extends PHPUnit_Framework_TestCase {
+class AnnotationTest extends PHPUnit_Framework_TestCase {
 
 
 	function setUp() {
