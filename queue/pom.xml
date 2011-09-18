@@ -21,13 +21,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.phpunit</groupId>
-			<artifactId>phpunit5</artifactId>
-			<version>3.3.9</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>net.php.pear</groupId>
 			<artifactId>system-daemon</artifactId>
 			<version>0.10.3</version>
