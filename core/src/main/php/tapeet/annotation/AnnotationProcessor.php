@@ -6,6 +6,7 @@ require_once 'addendum/annotations.php';
 
 
 use \ReflectionAnnotatedClass;
+use \ReflectionProperty;
 
 use \tapeet\ClassLoader;
 use \tapeet\ClassLoaderListener;
@@ -18,10 +19,12 @@ class AnnotationProcessor implements ClassLoaderListener {
 
 
 	private $methodAnnotations;
+	private $propertyAnnotations;
 
 
 	function __construct() {
 		$this->methodAnnotations = array();
+		$this->propertyAnnotations = array();
 	}
 
 
@@ -32,6 +35,11 @@ class AnnotationProcessor implements ClassLoaderListener {
 
 	function getMethodAnnotations($class, $method) {
 		return $this->methodAnnotations[$class][$method];
+	}
+
+
+	function getPropertyAnnotations($class, $property) {
+		return $this->propertyAnnotations[$class][$property];
 	}
 
 
@@ -52,15 +60,15 @@ class AnnotationProcessor implements ClassLoaderListener {
 		$chain = new ClassAnnotationChain($class->getAllAnnotations());
 		$chain->onLoad($class);
 
-		$methodAnnotationsFound = FALSE;
+		$methodAnnotationsFound = false;
 		foreach ($class->getMethods() as $method) {
 			$annotations = $method->getAnnotations();
 			if (! $annotations) {
 				continue;
 			}
+			$methodAnnotationsFound = true;
 			$this->setMethodAnnotations($className, $method->getName(), $annotations);
 			runkit_method_rename($className, $method->getName(), '___' . $method->getName());
-			$methodAnnotationsFound = true;
 		}
 		if ($methodAnnotationsFound) {
 			runkit_method_add(
@@ -76,6 +84,33 @@ class AnnotationProcessor implements ClassLoaderListener {
 						'
 				);
 		}
+
+		$propertyAnnotationsFound = false;
+		$defaultProperties = $class->getDefaultProperties();
+		foreach ($class->getProperties() as $property) {
+			$annotations = $property->getAnnotations();
+			if (! $annotations) {
+				continue;
+			}
+			$propertyAnnotationsFound = true;
+			$this->setPropertyAnnotations($className, $property->getName(), $annotations);
+			runkit_default_property_add($className, '___' . $property->getName(), $defaultProperties[$property->getName()]);
+			runkit_default_property_remove($className, $property->getName());
+		}
+		if ($propertyAnnotationsFound) {
+			runkit_method_add(
+					$className
+					, '__get'
+					, '$property'
+					, '
+							$annotationProcessor = \tapeet\annotation\AnnotationProcessor::get();
+							$chain = new \tapeet\annotation\PropertyAnnotationChain(
+									$annotationProcessor->getPropertyAnnotations("'.$className.'", $property)
+								);
+							return $chain->onGet($this, $property);
+						'
+				);
+		}
 	}
 
 
@@ -84,6 +119,14 @@ class AnnotationProcessor implements ClassLoaderListener {
 			$this->methodAnnotations[$class] = array();
 		}
 		$this->methodAnnotations[$class][$method] = $annotations;
+	}
+
+
+	function setPropertyAnnotations($class, $property, $annotations) {
+		if (! array_key_exists($class, $this->propertyAnnotations)) {
+			$this->propertyAnnotations[$class] = array();
+		}
+		$this->propertyAnnotations[$class][$property] = $annotations;
 	}
 
 }
