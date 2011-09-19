@@ -5,6 +5,6 @@ namespace tapeet\annotation;
 interface ClassAnnotation {
 
 
-	function onLoad($class, $chain);
+	function onLoad($class, ClassAnnotationChain $chain);
 
 }
