@@ -1,10 +1,10 @@
 <?php
-namespace tapeet\ioc;
+namespace tapeet\annotation;
 
 
-interface PropertyDecorator {
+interface PropertyAnnotation {
 
 
-	function onInit($object, $property, $chain);
+	function onGet($object, $property, PropertyAnnotationChain $chain);
 
 }

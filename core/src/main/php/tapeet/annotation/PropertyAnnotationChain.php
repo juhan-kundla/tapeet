@@ -1,23 +1,25 @@
 <?php
-namespace tapeet\ioc;
+namespace tapeet\annotation;
 
 
-class PropertyDecoratorChain {
+class PropertyAnnotationChain {
 
 
-	private $decorators;
+	private $annotations;
 
 
-	function __construct($decorators) {
-		$this->decorators = $decorators;
+	function __construct($annotations) {
+		$this->annotations = $annotations;
 	}
 
 
-	public function onInit($object, $property) {
-		$decorator = array_shift($this->decorators);
-		if ($decorator != null) {
-			$decorator->onInit($object, $property, $this);
+	public function onGet($object, $property) {
+		$annotation = array_shift($this->annotations);
+		if ($annotation !== null) {
+			return $annotation->onGet($object, $property, $this);
 		}
+		$property = '___' . $property;
+		return $object->$property;
 	}
 
 }
