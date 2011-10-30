@@ -2,14 +2,10 @@
 namespace tapeet\annotation;
 
 
-require_once 'addendum/annotations.php';
-
-
-use \ReflectionAnnotatedClass;
-use \ReflectionProperty;
-
 use \tapeet\ClassLoader;
 use \tapeet\ClassLoaderListener;
+use \tapeet\addendum\ReflectionAnnotatedClass;
+use \tapeet\addendum\ReflectionProperty;
 
 
 class AnnotationProcessor implements ClassLoaderListener {
@@ -56,6 +52,11 @@ class AnnotationProcessor implements ClassLoaderListener {
 
 
 	function onLoad($className) {
+		if (strpos($className, 'tapeet\addendum') !== FALSE) {
+			// Skip processing annotations on the framework classes
+			return;
+		}
+
 		$class = new ReflectionAnnotatedClass($className);
 		$chain = new ClassAnnotationChain($class->getAllAnnotations());
 		$chain->onLoad($class);

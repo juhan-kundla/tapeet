@@ -1,0 +1,45 @@
+<?php
+	/**
+	 * Addendum PHP Reflection Annotations
+	 * http://code.google.com/p/addendum/
+	 *
+	 * Copyright (C) 2006-2009 Jan "johno Suchal <johno@jsmf.net>
+	
+	 * This library is free software; you can redistribute it and/or
+	 * modify it under the terms of the GNU Lesser General Public
+	 * License as published by the Free Software Foundation; either
+	 * version 2.1 of the License, or (at your option) any later version.
+	
+	 * This library is distributed in the hope that it will be useful,
+	 * but WITHOUT ANY WARRANTY; without even the implied warranty of
+	 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+	 * Lesser General Public License for more details.
+	
+	 * You should have received a copy of the GNU Lesser General Public
+	 * License along with this library; if not, write to the Free Software
+	 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+	 **/
+
+
+namespace tapeet\addendum\parser;
+
+
+	class AnnotationsMatcher {
+		public function matches($string, &$annotations) {
+			$annotations = array();
+			$annotation_matcher = new AnnotationMatcher;
+			while(true) {
+				if(preg_match('/[\*\s](?=@)/', $string, $matches, PREG_OFFSET_CAPTURE)) {
+					$offset = $matches[0][1] + 1;
+					$string = substr($string, $offset);
+				}  else {
+					return; // no more annotations
+				}
+				if(($length = $annotation_matcher->matches($string, $data)) !== false) {
+					$string = substr($string, $length);
+					list($name, $params) = $data;
+					$annotations[$name][] = $params;
+				}
+			}
+		}
+	}

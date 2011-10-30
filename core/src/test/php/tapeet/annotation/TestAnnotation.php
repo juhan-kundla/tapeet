@@ -1,7 +1,5 @@
 <?php
-require_once 'addendum/annotations.php';
-
-
+use \tapeet\addendum\Annotation;
 use \tapeet\annotation\MethodAnnotation;
 use \tapeet\annotation\MethodAnnotationChain;
 use \tapeet\annotation\PropertyAnnotation;
