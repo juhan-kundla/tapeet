@@ -2,52 +2,17 @@
 namespace tapeet\annotation;
 
 
+use \ReflectionClass;
 use \tapeet\ClassLoader;
 use \tapeet\ClassLoaderListener;
-use \tapeet\addendum\ReflectionAnnotatedClass;
-use \tapeet\addendum\ReflectionProperty;
 
 
 class AnnotationProcessor implements ClassLoaderListener {
 
 
-	private static $INSTANCE = null;
-
-
-	private $methodAnnotations;
-	private $propertyAnnotations;
-
-
-	function __construct() {
-		$this->methodAnnotations = array();
-		$this->propertyAnnotations = array();
-	}
-
-
-	static function get() {
-		return self::$INSTANCE;
-	}
-
-
-	function getMethodAnnotations($class, $method) {
-		return $this->methodAnnotations[$class][$method];
-	}
-
-
-	function getPropertyAnnotations($class, $property) {
-		return $this->propertyAnnotations[$class][$property];
-	}
-
-
 	static function init() {
-		if (self::$INSTANCE !== null) {
-			return;
-		}
-		$annotationProcessor = new AnnotationProcessor();
-		self::$INSTANCE = $annotationProcessor;
-
 		$classLoader = ClassLoader::get();
-		$classLoader->addListener($annotationProcessor);
+		$classLoader->addListener(new AnnotationProcessor());
 	}
 
 
@@ -57,77 +22,51 @@ class AnnotationProcessor implements ClassLoaderListener {
 			return;
 		}
 
-		$class = new ReflectionAnnotatedClass($className);
-		$chain = new ClassAnnotationChain($class->getAllAnnotations());
+		$class = new ReflectionClass($className);
+		$annotations = ReflectionUtils::getAnnotations($class);
+
+		$chain = new ClassAnnotationChain($annotations->getClassAnnotations());
 		$chain->onLoad($class);
 
-		$methodAnnotationsFound = false;
-		foreach ($class->getMethods() as $method) {
-			$annotations = $method->getAnnotations();
-			if (! $annotations) {
-				continue;
-			}
-			$methodAnnotationsFound = true;
-			$this->setMethodAnnotations($className, $method->getName(), $annotations);
-			runkit_method_rename($className, $method->getName(), '___' . $method->getName());
-		}
-		if ($methodAnnotationsFound) {
+		if ($annotations->getMethodAnnotations()) {
 			runkit_method_add(
 					$className
 					, '__call'
 					, '$method, $args'
 					, '
-							$annotationProcessor = \tapeet\annotation\AnnotationProcessor::get();
+							$class = new \ReflectionClass("'.$className.'");
+							$annotations = \tapeet\annotation\ReflectionUtils::getAnnotations($class);
 							$chain = new \tapeet\annotation\MethodAnnotationChain(
-									$annotationProcessor->getMethodAnnotations("'.$className.'", $method)
+									$annotations->getMethodAnnotations($method)
 								);
 							return $chain->onCall($this, $method, $args);
 						'
 				);
 		}
-
-		$propertyAnnotationsFound = false;
-		$defaultProperties = $class->getDefaultProperties();
-		foreach ($class->getProperties() as $property) {
-			$annotations = $property->getAnnotations();
-			if (! $annotations) {
-				continue;
-			}
-			$propertyAnnotationsFound = true;
-			$this->setPropertyAnnotations($className, $property->getName(), $annotations);
-			runkit_default_property_add($className, '___' . $property->getName(), $defaultProperties[$property->getName()]);
-			runkit_default_property_remove($className, $property->getName());
+		foreach ($annotations->getMethodAnnotations() as $methodName => $methodAnnotations) {
+			runkit_method_rename($className, $methodName, '___' . $methodName);
 		}
-		if ($propertyAnnotationsFound) {
+
+		if ($annotations->getPropertyAnnotations()) {
 			runkit_method_add(
 					$className
 					, '__get'
 					, '$property'
 					, '
-							$annotationProcessor = \tapeet\annotation\AnnotationProcessor::get();
+							$class = new \ReflectionClass("'.$className.'");
+							$annotations = \tapeet\annotation\ReflectionUtils::getAnnotations($class);
 							$chain = new \tapeet\annotation\PropertyAnnotationChain(
-									$annotationProcessor->getPropertyAnnotations("'.$className.'", $property)
+									$annotations->getPropertyAnnotations($property)
 								);
 							return $chain->onGet($this, $property);
 						'
 				);
 		}
-	}
-
-
-	function setMethodAnnotations($class, $method, $annotations) {
-		if (! array_key_exists($class, $this->methodAnnotations)) {
-			$this->methodAnnotations[$class] = array();
+		$defaultProperties = $class->getDefaultProperties();
+		foreach ($annotations->getPropertyAnnotations() as $propertyName => $propertyAnnotations) {
+			runkit_default_property_add($className, '___' . $propertyName, $defaultProperties[$propertyName]);
+			runkit_default_property_remove($className, $propertyName);
 		}
-		$this->methodAnnotations[$class][$method] = $annotations;
-	}
-
-
-	function setPropertyAnnotations($class, $property, $annotations) {
-		if (! array_key_exists($class, $this->propertyAnnotations)) {
-			$this->propertyAnnotations[$class] = array();
-		}
-		$this->propertyAnnotations[$class][$property] = $annotations;
 	}
 
 }

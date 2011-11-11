@@ -2,9 +2,6 @@
 namespace tapeet\annotation;
 
 
-require_once 'tapeet/annotation/TestAnnotation.php';
-
-
 use \PHPUnit_Framework_TestCase;
 
 

@@ -1,12 +1,14 @@
 <?php
-use \tapeet\addendum\Annotation;
+namespace tapeet\annotation;
+
+
 use \tapeet\annotation\MethodAnnotation;
 use \tapeet\annotation\MethodAnnotationChain;
 use \tapeet\annotation\PropertyAnnotation;
 use \tapeet\annotation\PropertyAnnotationChain;
 
 
-class Annotation_TestAnnotation extends Annotation implements MethodAnnotation, PropertyAnnotation {
+class TestAnnotation implements MethodAnnotation, PropertyAnnotation {
 
 
 	function onCall($object, $method, $args, MethodAnnotationChain $chain) {
