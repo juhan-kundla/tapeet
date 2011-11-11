@@ -2,6 +2,9 @@
 namespace tapeet\queue\handler;
 
 
+use \tapeet\queue\annotation\Event;
+
+
 class MockHandler {
 
 

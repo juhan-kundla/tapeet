@@ -2,8 +2,9 @@
 namespace tapeet\queue;
 
 
-use Exception;
-use tapeet\FilterChain;
+use \Exception;
+use \tapeet\FilterChain;
+use \tapeet\annotation\Context;
 
 
 class Consumer {

@@ -3,7 +3,6 @@ namespace tapeet\queue\util;
 
 
 use \tapeet\Filter;
-use \tapeet\ioc\IOCProxy;
 
 
 class ConsumerFilter implements Filter {

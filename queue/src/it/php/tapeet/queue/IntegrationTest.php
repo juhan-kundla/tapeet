@@ -2,14 +2,13 @@
 namespace tapeet\queue;
 
 
-require_once 'tapeet/annotation/ServiceLocator.php';
-
-require_once 'tapeet/queue/annotation/Event.php';
-
 use \PHPUnit_Framework_TestCase;
 
+use \tapeet\ClassLoader;
 use \tapeet\FilterChain;
+use \tapeet\annotation\AnnotationProcessor;
 use \tapeet\ioc\ContextLoader;
+use \tapeet\ioc\ContextUtils;
 use \tapeet\queue\Event;
 
 
@@ -23,7 +22,10 @@ class IntegrationTest extends PHPUnit_Framework_TestCase {
 
 
 	function setUp() {
+		$classLoader = ClassLoader::get();
+		$classLoader->addListener(new AnnotationProcessor());
 		$this->context = ContextLoader::load('tapeet.yaml');
+		ContextUtils::setContext($this->context);
 	}
 
 
@@ -35,7 +37,7 @@ class IntegrationTest extends PHPUnit_Framework_TestCase {
 
 
 	function testRun() {
-		$queue = $this->context->get("queue");
+		$queue = $this->context->get('queue');
 		$this->assertNull($queue->poll(self::CONSUMER_ID));
 		$queue->add(new Event('MockHandler', json_encode(array('test' => 'hello'))));
 

@@ -2,18 +2,22 @@
 namespace tapeet\queue\annotation;
 
 
+use \tapeet\annotation\Context;
 use \tapeet\annotation\PropertyAnnotation;
 use \tapeet\annotation\PropertyAnnotationChain;
-use \tapeet\ioc\ServiceLocator;
 
 
 class Event implements PropertyAnnotation {
 
 
+	/** @Context */
+	public $context;
 	public $name;
 
 
 	function onGet($object, $property, PropertyAnnotationChain $chain) {
+		$event = $this->context->get('event');
+
 		$name = null;
 		if (isset($this->value)) {
 			$name = $this->value;
@@ -23,11 +27,7 @@ class Event implements PropertyAnnotation {
 			$name = $property;
 		}
 
-		$serviceLocator = ServiceLocator::getServiceLocator();
-		$event = $serviceLocator->getService('event');
-		$object->$property = $event->get($name);
-
-		$chain->onInit($object, $property);
+		return $event->get($name);
 	}
 
 }

@@ -20,7 +20,6 @@ class DaemonFilter implements Filter {
 	public $daemon;
 	/** @Configuration('daemon_gid') */
 	public $gid;
-	/** @Service */
 	public $logger;
 	/** @Configuration('daemon_pid_file') */
 	public $pidFile;
@@ -55,4 +54,3 @@ class DaemonFilter implements Filter {
 	}
 
 }
-?>

@@ -2,9 +2,6 @@
 namespace tapeet\queue\util;
 
 
-use tapeet\ioc\IOCProxy;
-
-
 class HandlerFactory {
 
 
@@ -15,7 +12,7 @@ class HandlerFactory {
 	function getHandler($type) {
 		$class = $this->applicationPackage . '\\handler\\' . $type;
 		if (class_exists($class)) {
-			return new IOCProxy($class);
+			return new $class();
 		}
 		return null;
 	}

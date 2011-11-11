@@ -5,7 +5,6 @@ namespace tapeet\queue\util;
 require_once 'System/Daemon.php';
 
 
-/** @Service('sleeper') */
 class DaemonSleeper {
 
 
@@ -18,4 +17,3 @@ class DaemonSleeper {
 	}
 
 }
-?>
