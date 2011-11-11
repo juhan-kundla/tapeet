@@ -1,19 +1,19 @@
 <?php
+namespace tapeet\queue\annotation;
 
 
-require_once 'addendum/annotations.php';
+use \tapeet\annotation\PropertyAnnotation;
+use \tapeet\annotation\PropertyAnnotationChain;
+use \tapeet\ioc\ServiceLocator;
 
-use tapeet\ioc\PropertyDecorator;
-use tapeet\ioc\ServiceLocator;
 
-
-class Annotation_Event extends Annotation implements PropertyDecorator {
+class Event implements PropertyAnnotation {
 
 
 	public $name;
 
 
-	function onInit($object, $property, $chain) {
+	function onGet($object, $property, PropertyAnnotationChain $chain) {
 		$name = null;
 		if (isset($this->value)) {
 			$name = $this->value;
