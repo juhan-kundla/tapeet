@@ -8,12 +8,12 @@ use \tapeet\addendum\parser\AnnotationsMatcher;
 class AnnotationParser {
 
 
-	private $aliases;
+	private $imports;
 	private $namespace;
 
 
-	function __construct($namespace, array $aliases) {
-		$this->aliases = $aliases;
+	function __construct($namespace, array $imports) {
+		$this->imports = $imports;
 		$this->namespace = $namespace;
 	}
 
@@ -29,8 +29,8 @@ class AnnotationParser {
 		$parser->matches($string, $data);
 
 		foreach ($data as $name => $values) {
-			if (array_key_exists($name, $this->aliases)) {
-				$className = $this->aliases[$name];
+			if (array_key_exists($name, $this->imports)) {
+				$className = $this->imports[$name];
 			} elseif (substr($name, 0, 1) != '\\') {
 				$className = $this->namespace . '\\' . $name;
 			} else {
