@@ -3,17 +3,10 @@ namespace tapeet\annotation;
 
 
 use \ReflectionClass;
-use \tapeet\ClassLoader;
 use \tapeet\ClassLoaderListener;
 
 
 class AnnotationProcessor implements ClassLoaderListener {
-
-
-	static function init() {
-		$classLoader = ClassLoader::get();
-		$classLoader->addListener(new AnnotationProcessor());
-	}
 
 
 	function onLoad($className) {

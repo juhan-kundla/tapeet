@@ -3,13 +3,15 @@ namespace tapeet\annotation;
 
 
 use \PHPUnit_Framework_TestCase;
+use \tapeet\ClassLoader;
 
 
 class AnnotationTest extends PHPUnit_Framework_TestCase {
 
 
 	function setUp() {
-		AnnotationProcessor::init();
+		$classLoader = ClassLoader::get();
+		$classLoader->addListener(new AnnotationProcessor());
 	}
 
 
