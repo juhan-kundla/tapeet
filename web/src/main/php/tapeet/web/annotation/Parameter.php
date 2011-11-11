@@ -1,16 +1,15 @@
 <?php
+namespace tapeet\web\annotation;
 
 
-require_once 'addendum/annotations.php';
-
-use tapeet\ioc\PropertyDecorator;
-use tapeet\web\Parameter;
+use \tapeet\annotation\PropertyAnnotation;
+use \tapeet\annotation\PropertyAnnotationChain;
 
 
-class Annotation_Parameter extends Annotation implements PropertyDecorator {
+class Parameter implements PropertyAnnotation {
 
 
-	function onInit($object, $property, $chain) {
+	function onGet($object, $property, PropertyAnnotationChain $chain) {
 		$parameterName = null;
 		if (isset($this->value)) {
 			$parameterName = $this->value;
@@ -29,4 +28,3 @@ class Annotation_Parameter extends Annotation implements PropertyDecorator {
 	}
 
 }
-?>

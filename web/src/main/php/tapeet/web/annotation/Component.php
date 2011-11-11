@@ -1,19 +1,20 @@
 <?php
-
-require_once 'addendum/annotations.php';
-
-use tapeet\ioc\PropertyDecorator;
-use tapeet\ioc\ServiceLocator;
+namespace tapeet\web\annotation;
 
 
-class Annotation_Component extends Annotation implements PropertyDecorator {
+use \tapeet\annotation\PropertyAnnotation;
+use \tapeet\annotation\PropertyAnnotationChain;
+use \tapeet\ioc\ServiceLocator;
+
+
+class Component implements PropertyAnnotation {
 
 
 	public $name;
 	public $type;
 
 
-	function onInit($object, $property, $chain) {
+	function onGet($object, $property, PropertyAnnotationChain $chain) {
 		$type = null;
 		if (isset($this->value)) {
 			$type = $this->value;
@@ -52,4 +53,3 @@ class Annotation_Component extends Annotation implements PropertyDecorator {
 	}
 
 }
-?>
