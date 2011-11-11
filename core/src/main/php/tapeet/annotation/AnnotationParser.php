@@ -2,7 +2,9 @@
 namespace tapeet\annotation;
 
 
-use \tapeet\addendum\parser\AnnotationsMatcher;
+require_once 'annotations.php';
+
+use \AnnotationsMatcher;
 
 
 class AnnotationParser {

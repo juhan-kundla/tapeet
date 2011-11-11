@@ -10,11 +10,6 @@ class AnnotationProcessor implements ClassLoaderListener {
 
 
 	function onLoad($className) {
-		if (strpos($className, 'tapeet\addendum') !== FALSE) {
-			// Skip processing annotations on the framework classes
-			return;
-		}
-
 		$class = new ReflectionClass($className);
 		$annotations = ReflectionUtils::getAnnotations($class);
 
