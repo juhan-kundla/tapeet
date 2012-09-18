@@ -24,13 +24,13 @@ class Response {
 	}
 
 
-	function sendError($errorCode) {
-		header('x', true, $errorCode);
+	function sendRedirect($url) {
+		header('Location: ' . $url);
 	}
 
 
-	function sendRedirect($url) {
-		header('Location: ' . $url);
+	function setStatus($status) {
+		header('x', true, $status);
 	}
 
 
