@@ -11,4 +11,13 @@
 	<packaging>php</packaging>
 	<name>tapeet-http</name>
 	<description>The Tapeet framework -- HTTP common classes</description>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
 </project>
