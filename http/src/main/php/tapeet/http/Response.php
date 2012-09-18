@@ -5,8 +5,9 @@ namespace tapeet\http;
 class Response {
 
 
-	static $SC_FORBIDDEN = 403;
-	static $SC_NOT_FOUND = 404;
+	const SC_BAD_REQUEST = 400;
+	const SC_FORBIDDEN = 403;
+	const SC_NOT_FOUND = 404;
 
 
 	function encodeRedirectURL($url) {
