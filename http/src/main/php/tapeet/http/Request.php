@@ -1,11 +1,8 @@
 <?php
-namespace tapeet\web;
+namespace tapeet\http;
 
 
 class Request {
-
-
-	public $remoteUser;
 
 
 	function getMethod() {
@@ -59,4 +56,3 @@ class Request {
 	}
 
 }
-?>
