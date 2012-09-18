@@ -41,6 +41,7 @@
 
 	<modules>
 		<module>core</module>
+		<module>http</module>
 		<module>queue</module>
 		<module>rest</module>
 		<module>web</module>
