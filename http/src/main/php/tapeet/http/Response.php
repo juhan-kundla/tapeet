@@ -1,5 +1,5 @@
 <?php
-namespace tapeet\web;
+namespace tapeet\http;
 
 
 class Response {
@@ -34,4 +34,3 @@ class Response {
 	}
 
 }
-?>

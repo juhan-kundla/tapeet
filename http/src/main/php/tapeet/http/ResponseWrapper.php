@@ -1,5 +1,5 @@
 <?php
-namespace tapeet\web;
+namespace tapeet\http;
 
 
 class ResponseWrapper extends Response {
@@ -38,4 +38,3 @@ class ResponseWrapper extends Response {
 	}
 
 }
-?>
