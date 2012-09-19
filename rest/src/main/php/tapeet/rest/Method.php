@@ -5,45 +5,40 @@ namespace tapeet\rest;
 class Method {
 
 
-	private $name;
-	private $versions = array();
+	private $method;
+	private $paths = array();
 
 
-	function __construct($name) {
-		$this->name = $name;
+	function __construct($method) {
+		$this->method = $method;
 	}
 
 
-	function addVersion(Version $version) {
-		if ($this->existsVersion($version->getVersion())) {
-			throw new RuntimeException("The version already exists: {$this->getName()} {$version->getVersion()}");
+	function addPath(Path $path) {
+		if ($this->existsPath($path->getPath())) {
+			throw new RuntimeException("The path already exists: {$this->getMethod()} {$path->getPath()}");
 		}
 
-		$this->versions[$version->getVersion()] = $version;
-		uksort($this->versions, function (Version $a, Version $b) { return $a->compareTo($b); });
+		$this->paths[$path->getPath()] = $path;
 	}
 
 
-	function existsVersion($version) {
-		return array_key_exists($version, $this->versions);
+	function existsPath($path) {
+		return array_key_exists($path, $this->paths);
 	}
 
 
-	public function getVersion($version = NULL) {
-		if ($version !== NULL && $this->existsVersion($version)) {
-			return $this->versions[$version];
-		}
+	public function getMethod() {
+		return $this->method;
+	}
 
-		if ($version === NULL && count($this->versions) > 0) {
-			return $this->versions[end(array_keys($this->versions))];
+
+	function getPath($path) {
+		if ($this->existsPath($path)) {
+			return $this->paths[$path];
 		}
 
 		return NULL;
-	}
-
-
-	public function getName() {
-		return $this->name;
 	}
 
 }

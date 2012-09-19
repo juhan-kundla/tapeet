@@ -8,26 +8,26 @@ use \RuntimeException;
 class Resources {
 
 
-	private $paths = array();
+	private $methods = array();
 
 
-	function addPath(Path $path) {
-		if ($this->existsPath($path->getName())) {
-			throw new RuntimeException("The path already exists: {$path->getName()}");
+	function addMethod(Method $method) {
+		if ($this->existsMethod($method->getMethod())) {
+			throw new RuntimeException("The method already exists: {$method->getMethod()}");
 		}
 
-		$this->paths[$path->getName()] = $path;
+		$this->methods[$method->getMethod()] = $method;
 	}
 
 
-	function existsPath($pathName) {
-		return array_key_exists($pathName, $this->paths);
+	function existsMethod($method) {
+		return array_key_exists($method, $this->methods);
 	}
 
 
-	function getPath($pathName) {
-		if ($this->existsPath($pathName)) {
-			return $this->paths[$pathName];
+	public function getMethod($method) {
+		if ($this->existsMethod($method)) {
+			return $this->methods[$method];
 		}
 
 		return NULL;
