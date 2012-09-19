@@ -2,6 +2,9 @@
 namespace tapeet\http;
 
 
+use \tapeet\http\response\Status;
+
+
 class ResponseWrapper extends Response {
 
 
@@ -23,13 +26,13 @@ class ResponseWrapper extends Response {
 	}
 
 
-	function sendError($errorCode) {
-		$this->response->sendError($errorCode);
+	function sendRedirect($url) {
+		$this->response->sendRedirect($url);
 	}
 
 
-	function sendRedirect($url) {
-		$this->response->sendRedirect($url);
+	function setStatus(Status $status) {
+		$this->response->setStatus($status);
 	}
 
 
