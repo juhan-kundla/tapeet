@@ -2,9 +2,6 @@
 namespace tapeet\ioc;
 
 
-use \Exception;
-
-
 class Context {
 
 
@@ -41,7 +38,7 @@ class Context {
 			return $object;
 		}
 
-		throw new Exception("Object not found: " . $name);
+		return NULL;
 	}
 
 
