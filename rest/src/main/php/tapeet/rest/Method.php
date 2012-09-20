@@ -2,8 +2,10 @@
 namespace tapeet\rest;
 
 
-use \tapeet\http\Response;
-use \tapeet\http\Request;
+use \RuntimeException;
+
+use \tapeet\http\annotation\Request;
+use \tapeet\http\annotation\Response;
 use \tapeet\http\response\NotFoundStatus;
 
 
@@ -12,6 +14,10 @@ class Method {
 
 	private $method;
 	private $paths = array();
+	/** @Request */
+	private $request;
+	/** @Response */
+	private $response;
 
 
 	function __construct($method) {
@@ -47,11 +53,11 @@ class Method {
 	}
 
 
-	function onRequest(Request $request, Response $response) {
-		$path = $this->getPath($request->getPathInfo());
+	function onRequest() {
+		$path = $this->getPath($this->request->getPathInfo());
 
 		if ($path === NULL) {
-			$response->setStatus(new NotFoundStatus());
+			$this->response->setStatus(new NotFoundStatus());
 			return;
 		}
 
@@ -61,8 +67,8 @@ class Method {
 
 		$result = $resource->onPost();
 		if ($result !== NULL) {
-			$response->setContentType('application/json');
-			$response->write(json_encode($result));
+			$this->response->setContentType('application/json');
+			$this->response->write(json_encode($result));
 		}
 	}
 

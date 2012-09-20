@@ -2,6 +2,9 @@
 namespace tapeet\rest;
 
 
+use \RuntimeException;
+
+
 class Path {
 
 
