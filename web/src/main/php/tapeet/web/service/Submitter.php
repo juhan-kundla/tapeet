@@ -2,7 +2,9 @@
 namespace tapeet\web\service;
 
 
-use tapeet\Filter;
+use \tapeet\Filter;
+use \tapeet\FilterChain;
+
 
 
 class Submitter implements Filter {
@@ -16,7 +18,7 @@ class Submitter implements Filter {
 	public $url;
 
 
-	function doFilter($chain) {
+	function doFilter(FilterChain $chain) {
 		if ($this->controllerState->isRenderRequest()) {
 			$chain->doFilter();
 			return;

@@ -2,7 +2,8 @@
 namespace tapeet\queue\util;
 
 
-use tapeet\Filter;
+use \tapeet\Filter;
+use \tapeet\FilterChain;
 
 require_once 'System/Daemon.php';
 
@@ -27,7 +28,7 @@ class DaemonFilter implements Filter {
 	public $uid;
 
 
-	function doFilter($chain) {
+	function doFilter(FilterChain $chain) {
 		$options = array(
 				 'appName' => $this->application
 				,'appDir' => $this->directory

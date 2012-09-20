@@ -2,7 +2,8 @@
 namespace tapeet\web\service;
 
 
-use tapeet\Filter;
+use \tapeet\Filter;
+use \tapeet\FilterChain;
 
 
 class Activator implements Filter {
@@ -14,7 +15,7 @@ class Activator implements Filter {
 	public $request;
 
 
-	function doFilter($chain) {
+	function doFilter(FilterChain $chain) {
 		$this->activate($this->controllerState->page);
 		$chain->doFilter();
 	}

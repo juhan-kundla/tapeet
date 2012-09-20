@@ -2,7 +2,8 @@
 namespace tapeet\web\service;
 
 
-use tapeet\Filter;
+use \tapeet\Filter;
+use \tapeet\FilterChain;
 
 
 class Validator implements Filter {
@@ -16,7 +17,7 @@ class Validator implements Filter {
 	public $url;
 
 
-	function doFilter($chain) {
+	function doFilter(FilterChain $chain) {
 		$this->validate($this->controllerState->components);
 
 		if ($this->controllerState->isSubmitRequest()) {
@@ -73,4 +74,3 @@ class Validator implements Filter {
 	}
 
 }
-?>

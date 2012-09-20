@@ -4,6 +4,7 @@ namespace tapeet\web\util;
 
 use \Exception;
 use \tapeet\Filter;
+use \tapeet\FilterChain;
 use \mysqli;
 
 
@@ -24,7 +25,7 @@ class ConnectionFilter implements Filter {
 	public $username;
 
 
-	public function doFilter($chain) {
+	public function doFilter(FilterChain $chain) {
 		$connection = new mysqli(
 				$this->host,
 				$this->username,

@@ -2,8 +2,9 @@
 namespace tapeet\web\service;
 
 
-use tapeet\Filter;
-use tapeet\web\NotFoundException;
+use \tapeet\Filter;
+use \tapeet\FilterChain;
+use \tapeet\web\NotFoundException;
 
 
 class PageFinder implements Filter {
@@ -20,7 +21,7 @@ class PageFinder implements Filter {
 	public $request;
 
 
-	function doFilter($chain) {
+	function doFilter(FilterChain $chain) {
 		$this->controllerState->requestType = ControllerState::$REQUEST_TYPE_RENDER;
 
 		$componentNames = null;
