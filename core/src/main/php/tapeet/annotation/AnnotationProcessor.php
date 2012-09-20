@@ -22,7 +22,7 @@ class AnnotationProcessor implements ClassLoaderListener {
 					, '__call'
 					, '$method, $args'
 					, '
-							$class = new \ReflectionClass("'.$className.'");
+							$class = new \ReflectionClass(\''.$className.'\');
 							$annotations = \tapeet\annotation\ReflectionUtils::getAnnotations($class);
 							$chain = new \tapeet\annotation\MethodAnnotationChain(
 									$annotations->getMethodAnnotations($method)
@@ -41,7 +41,7 @@ class AnnotationProcessor implements ClassLoaderListener {
 					, '__get'
 					, '$property'
 					, '
-							$class = new \ReflectionClass("'.$className.'");
+							$class = new \ReflectionClass(\''.$className.'\');
 							$annotations = \tapeet\annotation\ReflectionUtils::getAnnotations($class);
 							$chain = new \tapeet\annotation\PropertyAnnotationChain(
 									$annotations->getPropertyAnnotations($property)
