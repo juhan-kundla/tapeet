@@ -22,7 +22,7 @@
 				<artifactId>maven-php-plugin</artifactId>
 				<extensions>true</extensions>
 				<configuration>
-					<compileArgs>-d auto_prepend_file=tapeet/autoloading.php</compileArgs>
+					<compileArgs>-d auto_prepend_file=tapeet/Bootstrap.php</compileArgs>
 				</configuration>
 				<executions>
 					<execution>
