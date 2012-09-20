@@ -2,9 +2,12 @@
 namespace tapeet\annotation;
 
 
+use \ReflectionClass;
+
+
 interface ClassAnnotation {
 
 
-	function onLoad($class, ClassAnnotationChain $chain);
+	function onLoad(ReflectionClass $class, ClassAnnotationChain $chain);
 
 }

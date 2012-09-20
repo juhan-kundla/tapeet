@@ -2,6 +2,9 @@
 namespace tapeet\annotation;
 
 
+use \ReflectionClass;
+
+
 class ClassAnnotationChain {
 
 
@@ -13,7 +16,7 @@ class ClassAnnotationChain {
 	}
 
 
-	public function onLoad($class) {
+	public function onLoad(ReflectionClass $class) {
 		$annotation = array_shift($this->annotations);
 		if ($annotation !== null) {
 			$annotation->onLoad($class, $this);
