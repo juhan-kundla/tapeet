@@ -19,7 +19,12 @@ class Response {
 
 
 	function sendRedirect($url) {
-		header('Location: ' . $url);
+		header("Location: $url");
+	}
+
+
+	function setContentType($contentType) {
+		header("Content-type: $contentType");
 	}
 
 
