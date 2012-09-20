@@ -30,7 +30,7 @@ class AnnotationParser {
 		$parser = new AnnotationsMatcher();
 		$parser->matches($string, $data);
 
-		foreach ($data as $name => $values) {
+		foreach ($data as $name => $properties) {
 			if (array_key_exists($name, $this->imports)) {
 				$className = $this->imports[$name];
 			} elseif (substr($name, 0, 1) != '\\') {
@@ -39,7 +39,11 @@ class AnnotationParser {
 				$className = $name;
 			}
 
-			$annotations[] = new $className();
+			$annotation = new $className();
+			foreach ($properties[0] as $property => $value) {
+				$annotation->$property = $value;
+			}
+			$annotations[] = $annotation;
 		}
 
 		return $annotations;
