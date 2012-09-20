@@ -6,7 +6,6 @@ class ClassLoader {
 
 
 	const CLASS_NAME_PATTERN = '/^[\\a-zA-Z0-9_]+$/';
-	private static $INSTANCE;
 
 
 	private $listeners;
@@ -19,20 +18,6 @@ class ClassLoader {
 
 	function addListener(ClassLoaderListener $listener) {
 		$this->listeners[] = $listener;
-	}
-
-
-	static function get() {
-		return self::$INSTANCE;
-	}
-
-
-	static function init() {
-		if (self::$INSTANCE !== null) {
-			return;
-		}
-		self::$INSTANCE = new ClassLoader();
-		spl_autoload_register(array(self::$INSTANCE, 'load'), true);
 	}
 
 
@@ -58,6 +43,3 @@ class ClassLoader {
 	}
 
 }
-
-
-ClassLoader::init();
