@@ -2,6 +2,11 @@
 namespace tapeet\rest;
 
 
+use \tapeet\http\Response;
+use \tapeet\http\Request;
+use \tapeet\http\response\NotFoundStatus;
+
+
 class Method {
 
 
@@ -28,7 +33,7 @@ class Method {
 	}
 
 
-	public function getMethod() {
+	function getMethod() {
 		return $this->method;
 	}
 
@@ -39,6 +44,26 @@ class Method {
 		}
 
 		return NULL;
+	}
+
+
+	function onRequest(Request $request, Response $response) {
+		$path = $this->getPath($request->getPathInfo());
+
+		if ($path === NULL) {
+			$response->setStatus(new NotFoundStatus());
+			return;
+		}
+
+		$version = $path->getVersion();
+		$class = $version->getClass();
+		$resource = new $class;
+
+		$result = $resource->onPost();
+		if ($result !== NULL) {
+			$response->setContentType('application/json');
+			$response->write(json_encode($result));
+		}
 	}
 
 }

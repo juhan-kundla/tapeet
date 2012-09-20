@@ -4,6 +4,10 @@ namespace tapeet\rest;
 
 use \RuntimeException;
 
+use \tapeet\http\Response;
+use \tapeet\http\Request;
+use \tapeet\http\response\MethodNotAllowedStatus;
+
 
 class Resources {
 
@@ -25,12 +29,24 @@ class Resources {
 	}
 
 
-	public function getMethod($method) {
+	function getMethod($method) {
 		if ($this->existsMethod($method)) {
 			return $this->methods[$method];
 		}
 
 		return NULL;
+	}
+
+
+	function onRequest(Request $request, Response $response) {
+		$method = $this->getMethod($request->getMethod());
+
+		if ($method === NULL) {
+			$response->setStatus(new MethodNotAllowedStatus());
+			return;
+		}
+
+		$method->onRequest($request, $response);
 	}
 
 }
