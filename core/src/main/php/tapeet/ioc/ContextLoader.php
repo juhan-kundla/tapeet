@@ -6,7 +6,8 @@ class ContextLoader {
 
 
 	static function load($file) {
-		$context = new Context();
+		$context = ContextUtils::getContext();
+
 		foreach (yaml_parse(file_get_contents($file, true)) as $name => $configuration) {
 			$descriptor = new Descriptor();
 			$descriptor->name = $name;
@@ -22,6 +23,7 @@ class ContextLoader {
 
 			$context->addDescriptor($descriptor);
 		}
+
 		return $context;
 	}
 
