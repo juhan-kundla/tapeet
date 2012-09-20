@@ -88,6 +88,14 @@
 	</properties>
 
 
+	<repositories>
+		<repository>
+			<id>release-repo1.php-maven.org</id>
+			<url>http://repo1.php-maven.org/release</url>
+		</repository>
+	</repositories>
+
+
 	<scm>
 		<connection>scm:git:https://code.google.com/p/tapeet/</connection>
 		<developerConnection>scm:git:https://code.google.com/p/tapeet/</developerConnection>
