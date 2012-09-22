@@ -7,6 +7,7 @@ use \RuntimeException;
 
 use \tapeet\annotation\ClassAnnotation;
 use \tapeet\annotation\ClassAnnotationChain;
+use \tapeet\annotation\Service;
 use \tapeet\rest\Method;
 use \tapeet\rest\Path;
 use \tapeet\rest\Version;
@@ -15,18 +16,18 @@ use \tapeet\rest\Version;
 class Resource implements ClassAnnotation {
 
 
-	/** @Application */
-	private $application;
 	public $method;
 	public $path;
+	/** @Service('_tapeet_rest_resources') */
+	public $resources;
 	public $version;
 
 
 	function onLoad(ReflectionClass $class, ClassAnnotationChain $chain) {
-		$method = $this->application->getMethod($this->method);
+		$method = $this->resources->getMethod($this->method);
 		if ($method === NULL) {
 			$method = new Method($this->method);
-			$this->application->addMethod($method);
+			$this->resources->addMethod($method);
 		}
 
 		$path = $method->getPath($this->path);

@@ -15,7 +15,7 @@ class Version {
 	}
 
 
-	function compare(Version $other) {
+	function compareTo(Version $other) {
 		$length = count($this->version) < count($other->version) ? count($this->version) : count($other->version);
 		for ($i = 0; $i < $length; $i++) {
 			if ($this->version[$i] != $other->version[$i]) {

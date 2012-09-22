@@ -24,15 +24,6 @@
 				<configuration>
 					<compileArgs>-d auto_prepend_file=tapeet/Bootstrap.php</compileArgs>
 				</configuration>
-				<executions>
-					<execution>
-						<id>default-php-validate</id>
-						<goals><goal>php-validate</goal></goals>
-						<configuration>
-							<compileArgs>-l</compileArgs>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>

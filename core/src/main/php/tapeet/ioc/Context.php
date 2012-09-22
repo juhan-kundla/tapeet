@@ -2,6 +2,9 @@
 namespace tapeet\ioc;
 
 
+use \RuntimeException;
+
+
 class Context {
 
 
@@ -38,7 +41,7 @@ class Context {
 			return $object;
 		}
 
-		return NULL;
+		throw new RuntimeException("The requested service is not defined: $name");
 	}
 
 

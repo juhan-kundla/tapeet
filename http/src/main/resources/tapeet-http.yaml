@@ -1,0 +1,6 @@
+_tapeet_http_request:
+    class: \tapeet\http\Request
+
+
+_tapeet_http_response:
+    class: \tapeet\http\Response
