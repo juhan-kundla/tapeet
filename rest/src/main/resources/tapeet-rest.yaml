@@ -1,7 +1,7 @@
 _tapeet_rest_application:
     class: \tapeet\FilterChain
     properties:
-        filters: [$_tapeet_rest_resourceScanner, $_tapeet_rest_controller]
+        chain: [$_tapeet_rest_resourceScanner, $_tapeet_rest_controller]
 
 
 _tapeet_rest_applicationFilter:

@@ -17,7 +17,7 @@ class HandlerFilter implements Filter {
 	public $handlerFactory;
 
 
-	function doFilter(FilterChain $chain) {
+	function execute(FilterChain $chain) {
 		$handler = $this->handlerFactory->getHandler($this->event->type);
 		if ($handler === null) {
 			throw new Exception('Failed to get handler for event type: ' . $this->event->type);
@@ -26,7 +26,7 @@ class HandlerFilter implements Filter {
 		$this->context->add('handler', $handler);
 		$handler->onEvent();
 
-		$chain->doFilter();
+		return $chain->execute();
 	}
 
 }

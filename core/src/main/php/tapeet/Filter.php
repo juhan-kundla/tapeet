@@ -5,6 +5,6 @@ namespace tapeet;
 interface Filter {
 
 
-	function doFilter(FilterChain $chain);
+	function execute(FilterChain $chain);
 
 }

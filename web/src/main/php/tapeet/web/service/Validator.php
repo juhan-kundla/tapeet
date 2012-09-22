@@ -17,7 +17,7 @@ class Validator implements Filter {
 	public $url;
 
 
-	function doFilter(FilterChain $chain) {
+	function execute(FilterChain $chain) {
 		$this->validate($this->controllerState->components);
 
 		if ($this->controllerState->isSubmitRequest()) {
@@ -53,7 +53,7 @@ class Validator implements Filter {
 			}
 		}
 
-		$chain->doFilter();
+		return $chain->execute();
 	}
 
 

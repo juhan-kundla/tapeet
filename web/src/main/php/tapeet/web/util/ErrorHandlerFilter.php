@@ -27,9 +27,9 @@ class ErrorHandlerFilter implements Filter {
 	}
 
 
-	function doFilter(FilterChain $chain) {
+	function execute(FilterChain $chain) {
 		try {
-			$chain->doFilter();
+			return $chain->execute();
 		} catch (AccessDeniedException $e) {
 			$this->response->sendError(Response::$SC_FORBIDDEN);
 			$this->response->write("<h1>Access denied</h1>");

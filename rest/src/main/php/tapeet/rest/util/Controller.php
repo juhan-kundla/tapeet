@@ -16,19 +16,19 @@ class Controller implements Filter {
 	public $response;
 
 
-	function doFilter(FilterChain $chain) {
+	function execute(FilterChain $chain) {
 		$method = $this->resources->getMethod($this->request->getMethod());
 
 		if ($method === NULL) {
 			$this->response->setStatus(new MethodNotAllowedStatus());
-			return $chain->doFilter();
+			return $chain->execute();
 		}
 
 		$path = $method->getPath($this->request->getPathInfo());
 
 		if ($path === NULL) {
 			$this->response->setStatus(new NotFoundStatus());
-			return $chain->doFilter();
+			return $chain->execute();
 		}
 
 		$version = $path->getVersion();
@@ -41,7 +41,7 @@ class Controller implements Filter {
 			$this->response->write(json_encode($result));
 		}
 
-		return $chain->doFilter();
+		return $chain->execute();
 	}
 
 }

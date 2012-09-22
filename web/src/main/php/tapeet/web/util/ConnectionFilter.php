@@ -25,7 +25,7 @@ class ConnectionFilter implements Filter {
 	public $username;
 
 
-	public function doFilter(FilterChain $chain) {
+	public function execute(FilterChain $chain) {
 		$connection = new mysqli(
 				$this->host,
 				$this->username,
@@ -38,7 +38,7 @@ class ConnectionFilter implements Filter {
 
 			$this->serviceLocator->addService('connection', $connection);
 
-			$chain->doFilter();
+			$chain->execute();
 
 			$connection->commit();
 			$connection->close();

@@ -21,7 +21,7 @@ class Renderer {
 	public $smartyCompileDir;
 
 
-	public function doFilter($chain) {
+	public function execute($chain) {
 		if ($this->controllerState->isRenderRequest()) {
 			$this->response->write(
 					$this->render(
@@ -29,7 +29,7 @@ class Renderer {
 						)
 				);
 		}
-		$chain->doFilter();
+		return $chain->execute();
 	}
 
 

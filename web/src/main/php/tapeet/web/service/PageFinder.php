@@ -21,7 +21,7 @@ class PageFinder implements Filter {
 	public $request;
 
 
-	function doFilter(FilterChain $chain) {
+	function execute(FilterChain $chain) {
 		$this->controllerState->requestType = ControllerState::$REQUEST_TYPE_RENDER;
 
 		$componentNames = null;
@@ -73,7 +73,7 @@ class PageFinder implements Filter {
 		$this->controllerState->page = $page;
 		$this->controllerState->components = $components;
 
-		$chain->doFilter();
+		return $chain->execute();
 	}
 
 }

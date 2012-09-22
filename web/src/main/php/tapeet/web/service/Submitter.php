@@ -18,10 +18,9 @@ class Submitter implements Filter {
 	public $url;
 
 
-	function doFilter(FilterChain $chain) {
+	function execute(FilterChain $chain) {
 		if ($this->controllerState->isRenderRequest()) {
-			$chain->doFilter();
-			return;
+			return $chain->execute();
 		}
 
 		$redirect = $this->submit($this->controllerState->components);
@@ -36,7 +35,7 @@ class Submitter implements Filter {
 					)
 			);
 
-		$chain->doFilter();
+		return $chain->execute();
 	}
 
 

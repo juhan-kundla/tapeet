@@ -12,9 +12,9 @@ class ApplicationFilter implements Filter {
 	public $application;
 
 
-	function doFilter(FilterChain $chain) {
-		$this->application->doFilter();
-		return $chain->doFilter();
+	function execute(FilterChain $chain) {
+		$this->application->execute();
+		return $chain->execute();
 	}
 
 }

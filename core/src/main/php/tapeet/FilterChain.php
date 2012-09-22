@@ -5,13 +5,13 @@ namespace tapeet;
 class FilterChain {
 
 
-	public $filters;
+	public $chain;
 
 
-	public function doFilter() {
-		$filter = array_shift($this->filters);
+	public function execute() {
+		$filter = array_shift($this->chain);
 		if ($filter !== null) {
-			$filter->doFilter($this);
+			$filter->execute($this);
 		}
 	}
 

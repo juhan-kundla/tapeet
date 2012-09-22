@@ -12,9 +12,9 @@ class ConsumerFilter implements Filter {
 	public $consumer;
 
 
-	function doFilter(FilterChain $chain) {
+	function execute(FilterChain $chain) {
 		$this->consumer->run();
-		$chain->doFilter();
+		return $chain->execute();
 	}
 
 }

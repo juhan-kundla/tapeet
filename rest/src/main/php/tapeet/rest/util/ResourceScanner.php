@@ -18,13 +18,13 @@ class ResourceScanner implements Filter {
 	private $resourceClasses;
 
 
-	function doFilter(FilterChain $chain) {
+	function execute(FilterChain $chain) {
 		foreach ($this->getResourceClasses() as $class) {
 			// Trigger the loading of the classes having Resource annotation
 			// and thus the registration of the resource endpoints
 			class_exists($class);
 		}
-		return $chain->doFilter();
+		return $chain->execute();
 	}
 
 

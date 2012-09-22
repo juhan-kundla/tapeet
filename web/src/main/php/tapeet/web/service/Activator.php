@@ -15,9 +15,9 @@ class Activator implements Filter {
 	public $request;
 
 
-	function doFilter(FilterChain $chain) {
+	function execute(FilterChain $chain) {
 		$this->activate($this->controllerState->page);
-		$chain->doFilter();
+		return $chain->execute();
 	}
 
 

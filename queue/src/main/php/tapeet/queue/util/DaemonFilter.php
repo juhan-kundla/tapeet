@@ -28,7 +28,7 @@ class DaemonFilter implements Filter {
 	public $uid;
 
 
-	function doFilter(FilterChain $chain) {
+	function execute(FilterChain $chain) {
 		$options = array(
 				 'appName' => $this->application
 				,'appDir' => $this->directory
@@ -46,7 +46,7 @@ class DaemonFilter implements Filter {
 		}
 
 		try {
-			$chain->doFilter();
+			$chain->execute();
 			System_Daemon::stop();
 		} catch (Exception $e) {
 			System_Daemon::stop();
