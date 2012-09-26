@@ -52,7 +52,14 @@ class Descriptor {
 
 		if ($this->properties !== null) {
 			foreach ($this->properties as $property => $value) {
-				$object->$property = $this->resolve($value);
+				$value = $this->resolve($value);
+				foreach (array("set{ucfirst($property)}", "set_$property", $property) as $setter) {
+					if (method_exists($object, $setter)) {
+						call_user_method($setter, $object, $value);
+						break 2;
+					}
+				}
+				$object->$property = $value;
 			}
 		}
 
