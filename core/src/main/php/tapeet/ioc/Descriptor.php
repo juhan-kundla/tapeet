@@ -67,8 +67,8 @@ class Descriptor {
 
 		if (is_array($value)) {
 			$result = array();
-			foreach ($value as $subValue) {
-				$result[] = $this->resolve($subValue);
+			foreach ($value as $subKey => $subValue) {
+				$result[$this->resolve($subKey)] = $this->resolve($subValue);
 			}
 			return $result;
 		}
