@@ -25,11 +25,5 @@
 			<artifactId>http</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-
-		<dependency>
-			<groupId>net.php.pear</groupId>
-			<artifactId>log</artifactId>
-			<version>1.12.0</version>
-		</dependency>
 	</dependencies>
 </project>
