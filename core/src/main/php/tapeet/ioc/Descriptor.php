@@ -13,16 +13,41 @@ class Descriptor {
 	public $class;
 	public $constructorArgs;
 	public $context;
+	public $factory;
+	public $factoryMethod;
 	public $name;
 	public $properties;
 
 
 	function create() {
-		$class = new ReflectionClass($this->class);
-		if ($this->constructorArgs !== null) {
-			$object = $class->newInstanceArgs($this->resolve($this->constructorArgs));
+		$args = NULL;
+		if ($this->constructorArgs !== NULL) {
+			$args = $this->resolve($this->constructorArgs);
 		} else {
-			$object = $class->newInstance();
+			$args = array();
+		}
+
+		$factory = NULL;
+		if ($this->factory !== NULL) {
+			$factory = $this->context->get($this->factory);
+		}
+
+		$object = NULL;
+
+		if ($factory !== NULL) {
+			$object = call_user_method_array($this->factoryMethod, $factory, $args);
+		} else {
+			$class = new ReflectionClass($this->class);
+			if ($this->factoryMethod !== NULL) {
+				$factoryMethod = $class->getMethod($this->factoryMethod);
+				$object = $factoryMethod->invokeArgs(NULL, $args);
+			} else {
+				if (empty($args)) {
+					$object = $class->newInstance();
+				} else {
+					$object = $class->newInstanceArgs($args);
+				}
+			}
 		}
 
 		if ($this->properties !== null) {
