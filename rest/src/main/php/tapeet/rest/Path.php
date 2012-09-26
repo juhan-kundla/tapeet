@@ -23,7 +23,6 @@ class Path {
 		}
 
 		$this->versions[$version->getVersion()] = $version;
-		uksort($this->versions, function (Version $a, Version $b) { return $a->compareTo($b); });
 	}
 
 
@@ -38,15 +37,17 @@ class Path {
 
 
 	public function getVersion($version = NULL) {
-		if ($version !== NULL && $this->existsVersion($version)) {
+		if ($version !== NULL) {
 			return $this->versions[$version];
 		}
 
-		if ($version === NULL && count($this->versions) > 0) {
-			return $this->versions[end(array_keys($this->versions))];
+		if (empty($this->versions)) {
+			return NULL;
 		}
 
-		return NULL;
+		$versions = array_values($this->versions);
+		uksort($versions, function (Version $a, Version $b) { return $a->compareTo($b); });
+		return array_shift($versions);
 	}
 
 }
