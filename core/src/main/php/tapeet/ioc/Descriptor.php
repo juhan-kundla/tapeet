@@ -77,16 +77,26 @@ class Descriptor {
 			return $value;
 		}
 
+		$properties = explode('->', substr($value, 1));
+		$name = array_shift($properties);
 		$context = $this->context;
-		$name = substr($value, 1);
-		if ($context->isAvailable($name)) {
-			return $context->get($name);
+
+		if (! $context->isAvailable($name) && empty($properties)) {
+			return new LazyObject(function () use ($context, $name) {
+						return $context->get($name);
+					}
+				);
 		}
-		return new LazyObject(
-				function () use ($context, $name) {
-					return $context->get($name);
-				}
-			);
+
+		$object = $context->get($name);
+		foreach ($properties as $property) {
+			if (is_array($object)) {
+				$object = $object[$property];
+			} else {
+				$object = $object->$property;
+			}
+		}
+		return $object;
 	}
 
 }
