@@ -36,7 +36,7 @@ class Resource implements ClassAnnotation {
 			$method->addPath($path);
 		}
 
-		$path->addVersion(new Version($this->version, $class->getName()));
+		$path->addVersion(new Version($this->version, $class));
 
 		return $chain->onLoad($class);
 	}
