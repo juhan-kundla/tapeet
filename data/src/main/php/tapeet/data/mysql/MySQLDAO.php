@@ -109,7 +109,7 @@ abstract class MySQLDAO {
 		$query->connection = $this->connection;
 		$query->logger = $this->logger;
 		$row = $query->getRow();
-		return $row == null ? null : $this->createObject($row);
+		return $row === NULL ? NULL : $this->createObject($row);
 	}
 
 
@@ -128,7 +128,7 @@ abstract class MySQLDAO {
 
 	function save($object) {
 		$this->logger->debug(__METHOD__ . '(' . get_class($object) . ')');
-		if ($object->id === null) {
+		if ($object->id === NULL) {
 			$this->insert($object);
 		} else {
 			$this->update($object);
