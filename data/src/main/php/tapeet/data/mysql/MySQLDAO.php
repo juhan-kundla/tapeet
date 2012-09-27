@@ -8,6 +8,12 @@ use \Exception;
 abstract class MySQLDAO {
 
 
+	public $connection;
+	public $fields;
+	public $logger;
+	public $table;
+
+
 	abstract function createData($object);
 	abstract function createObject($data);
 
@@ -74,6 +80,10 @@ abstract class MySQLDAO {
 		}
 
 		$statement = $this->connection->stmt_init();
+		if (! $statement) {
+			throw new Exception($this->connection->error);
+		}
+
 		try {
 			if (! $statement->prepare($query)) {
 				throw new Exception($statement->error);
