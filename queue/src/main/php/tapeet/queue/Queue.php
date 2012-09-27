@@ -14,7 +14,7 @@ class Queue {
 	public $schema;
 
 
-	function add($event) {
+	function add(Event $event) {
 		$query = sprintf('
 				insert into %s.event (
 						consumer_id
@@ -119,7 +119,7 @@ class Queue {
 	}
 
 
-	function setError($event, $error) {
+	function setError(Event $event, $error) {
 		$query = sprintf('
 				UPDATE %s.event SET
 						 in_process = NULL
@@ -146,7 +146,7 @@ class Queue {
 	}
 
 
-	function setProcessed($event) {
+	function setProcessed(Event $event) {
 		$query = sprintf('
 				UPDATE %s.event
 						SET processed = NOW()
