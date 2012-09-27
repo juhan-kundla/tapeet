@@ -10,6 +10,11 @@ class MockLogger {
 	}
 
 
+	function err($msg) {
+		echo 'ERROR: ' . $msg . '\n';
+	}
+
+
 	function warn($msg) {
 		echo 'WARN: ' . $msg . '\n';
 	}

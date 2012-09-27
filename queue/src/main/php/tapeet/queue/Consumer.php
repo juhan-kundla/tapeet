@@ -32,8 +32,8 @@ class Consumer {
 					$this->logger->debug(sprintf('Consumer %s is processing event type: %s -> %s (%s)', $this->id, $this->queue->id, $event->type, $event->id));
 					$this->context->add('event', $event);
 					$handlerChain = new FilterChain();
-					$handlerChain->filters = $this->filters;
-					$handlerChain->doFilter();
+					$handlerChain->chain = $this->filters;
+					$handlerChain->execute();
 					$this->queue->setProcessed($event);
 				}
 

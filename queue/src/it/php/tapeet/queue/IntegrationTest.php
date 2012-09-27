@@ -4,10 +4,7 @@ namespace tapeet\queue;
 
 use \PHPUnit_Framework_TestCase;
 
-use \tapeet\ClassLoader;
 use \tapeet\FilterChain;
-use \tapeet\annotation\AnnotationProcessor;
-use \tapeet\ioc\ContextLoader;
 use \tapeet\ioc\ContextUtils;
 use \tapeet\queue\Event;
 
@@ -22,10 +19,7 @@ class IntegrationTest extends PHPUnit_Framework_TestCase {
 
 
 	function setUp() {
-		$classLoader = ClassLoader::get();
-		$classLoader->addListener(new AnnotationProcessor());
-		$this->context = ContextLoader::load('tapeet.yaml');
-		ContextUtils::setContext($this->context);
+		$this->context = ContextUtils::load('tapeet.yaml');
 	}
 
 
@@ -43,7 +37,7 @@ class IntegrationTest extends PHPUnit_Framework_TestCase {
 
 		$consumerFilter = $this->context->get('consumerFilter');
 		try {
-			$consumerFilter->doFilter(new FilterChain());
+			$consumerFilter->execute(new FilterChain());
 		} catch (InterruptedException $ignored) {}
 
 		$handler = $this->context->get('handler');
