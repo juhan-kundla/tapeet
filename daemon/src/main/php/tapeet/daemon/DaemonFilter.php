@@ -2,8 +2,6 @@
 namespace tapeet\daemon;
 
 
-require_once 'System/Daemon.php';
-
 use \System_Daemon;
 
 use \tapeet\Filter;

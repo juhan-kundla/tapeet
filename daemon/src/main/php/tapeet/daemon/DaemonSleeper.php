@@ -1,8 +1,8 @@
 <?php
-namespace tapeet\queue\util;
+namespace tapeet\daemon;
 
 
-require_once 'System/Daemon.php';
+use \System_Daemon;
 
 
 class DaemonSleeper {
