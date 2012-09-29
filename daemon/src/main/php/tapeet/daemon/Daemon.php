@@ -8,24 +8,26 @@ use \tapeet\Filter;
 use \tapeet\FilterChain;
 
 
-class DaemonFilter implements Filter {
+class Daemon implements Filter {
 
 
-	public $application;
-	public $applicationDescription;
+	public $chain;
+	public $description;
 	public $directory;
 	public $daemon;
 	public $gid;
 	public $logger;
+	public $name;
 	public $pidFile;
+	public $sleepTime;
 	public $uid;
 
 
 	function execute(FilterChain $chain) {
 		$options = array(
-				 'appName' => $this->application
+				 'appName' => $this->name
 				,'appDir' => $this->directory
-				,'appDescription' => $this->applicationDescription
+				,'appDescription' => $this->description
 				,'appPidLocation' => $this->pidFile
 				,'appRunAsGID' => $this->gid
 				,'appRunAsUID' => $this->uid
@@ -39,7 +41,12 @@ class DaemonFilter implements Filter {
 		}
 
 		try {
-			$chain->execute();
+			while (true) {
+				$subChain = new FilterChain();
+				$subChain->chain = $this->chain;
+				$subChain->execute();
+				System_Daemon::iterate($this->sleepTime);
+			}
 			System_Daemon::stop();
 		} catch (Exception $e) {
 			System_Daemon::stop();
