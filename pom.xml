@@ -13,6 +13,7 @@
 	<name>tapeet-parent</name>
 	<version>0.0.1-SNAPSHOT</version>
 	<description>The Tapeet framework -- parent POM</description>
+	<url>https://code.google.com/p/tapeet/</url>
 
 
 	<build>
@@ -37,6 +38,23 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+
+	<developers>
+		<developer>
+			<id>juhan.kundla</id>
+			<name>Juhan Kundla</name>
+			<timezone>2</timezone>
+		</developer>
+	</developers>
+
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
 
 
 	<modules>
