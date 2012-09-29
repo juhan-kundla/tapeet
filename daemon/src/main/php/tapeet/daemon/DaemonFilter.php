@@ -2,10 +2,10 @@
 namespace tapeet\daemon;
 
 
+require_once 'System/Daemon.php';
+
 use \tapeet\Filter;
 use \tapeet\FilterChain;
-
-require_once 'System/Daemon.php';
 
 
 class DaemonFilter implements Filter {
