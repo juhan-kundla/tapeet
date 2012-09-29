@@ -8,7 +8,6 @@ require_once 'System/Daemon.php';
 class DaemonSleeper {
 
 
-	/** @Configuration('daemon_sleep_time') */
 	public $sleepTime;
 
 

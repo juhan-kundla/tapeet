@@ -7,10 +7,10 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>queue</artifactId>
+	<artifactId>daemon</artifactId>
 	<packaging>php</packaging>
-	<name>tapeet-queue</name>
-	<description>The Tapeet framework -- database (MySQL) based queues</description>
+	<name>tapeet-daemon</name>
+	<description>The Tapeet framework -- daemon</description>
 
 
 	<dependencies>
@@ -18,6 +18,12 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>core</artifactId>
 			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.php.pear</groupId>
+			<artifactId>system-daemon</artifactId>
+			<version>0.10.3</version>
 		</dependency>
 	</dependencies>
 </project>

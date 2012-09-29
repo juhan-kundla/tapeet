@@ -59,6 +59,7 @@
 
 	<modules>
 		<module>core</module>
+		<module>daemon</module>
 		<module>data</module>
 		<module>http</module>
 		<module>queue</module>

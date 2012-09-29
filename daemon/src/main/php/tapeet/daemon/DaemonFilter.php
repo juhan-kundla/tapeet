@@ -1,5 +1,5 @@
 <?php
-namespace tapeet\queue\util;
+namespace tapeet\daemon;
 
 
 use \tapeet\Filter;
@@ -11,20 +11,13 @@ require_once 'System/Daemon.php';
 class DaemonFilter implements Filter {
 
 
-	/** @Configuration('application') */
 	public $application;
-	/** @Configuration('application_description') */
 	public $applicationDescription;
-	/** @Configuration('daemon_dir') */
 	public $directory;
-	/** @Configuration('daemon') */
 	public $daemon;
-	/** @Configuration('daemon_gid') */
 	public $gid;
 	public $logger;
-	/** @Configuration('daemon_pid_file') */
 	public $pidFile;
-	/** @Configuration('daemon_uid') */
 	public $uid;
 
 
