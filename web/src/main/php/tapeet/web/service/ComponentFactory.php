@@ -2,9 +2,6 @@
 namespace tapeet\web\service;
 
 
-use tapeet\web\ioc\IOCProxy;
-
-
 class ComponentFactory {
 
 
@@ -39,7 +36,7 @@ class ComponentFactory {
 				}
 				$type = $basePath . '\\' . implode('\\', $path);
 				if (class_exists($type)) {
-					$component = new IOCProxy($type);
+					$component = new $type;
 					break 2;
 				} else {
 					array_push($errors, $type);
