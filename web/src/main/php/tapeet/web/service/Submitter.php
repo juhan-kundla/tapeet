@@ -10,11 +10,8 @@ use \tapeet\FilterChain;
 class Submitter implements Filter {
 
 
-	/** @Service */
 	public $controllerState;
-	/** @Service */
 	public $response;
-	/** @Service */
 	public $url;
 
 
@@ -49,12 +46,12 @@ class Submitter implements Filter {
 
 			$subComponent = $components[0];
 			$submitFromChildMethod = 'onSubmitFrom' . ucfirst(str_replace('/', '_', $subComponent->_name));
-			if (method_exists($component->object, $submitFromChildMethod)) {
+			if (method_exists($component, $submitFromChildMethod)) {
 				$redirect = $component->$submitFromChildMethod();
 			}
 		}
 
-		if (method_exists($component->object, 'onSubmit')) {
+		if (method_exists($component, 'onSubmit')) {
 			$redirect = $component->onSubmit();
 		}
 

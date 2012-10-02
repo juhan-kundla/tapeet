@@ -39,6 +39,14 @@ _tapeet_web_pageFinder:
         request: $_tapeet_http_request
 
 
+_tapeet_web_submitter:
+    class: \tapeet\web\service\Submitter
+    properties:
+        controllerState: $_tapeet_web_controllerState
+        response: $_tapeet_http_response
+        url: $_tapeet_web_url
+
+
 _tapeet_web_url:
     class: \tapeet\web\service\URL
 
