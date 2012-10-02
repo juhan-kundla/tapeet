@@ -8,10 +8,7 @@ class URL {
 	function getURL($page, $parameters = array()) {
 		$query = array();
 
-		if (
-				isset($page->object) && method_exists($page->object, 'onPassivate')
-				|| method_exists($page, 'onPassivate')
-			) {
+		if (method_exists($page, 'onPassivate')) {
 			$parameters = array_merge($page->onPassivate(), $parameters);
 		}
 
@@ -21,7 +18,7 @@ class URL {
 			}
 		}
 
-		$url = '/index.php/' . $page->_path;
+		$url = '/' . $page->_path;
 		if (! empty($query)) {
 			$url .= '?' . implode('&', $query);
 		}
@@ -30,4 +27,3 @@ class URL {
 	}
 
 }
-?>
