@@ -50,13 +50,13 @@ class ComponentFactory {
 				);
 		}
 
-		if (! isset($component->object->_components)) {
+		if (! isset($component->_components)) {
 			$component->_components = array();
 		}
 
 		$component->_name = null;
 
-		if (! isset($component->object->_parameters)) {
+		if (! isset($component->_parameters)) {
 			$component->_parameters = array();
 		}
 
