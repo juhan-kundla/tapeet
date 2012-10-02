@@ -24,5 +24,13 @@ _tapeet_web_controllerState:
     class: \tapeet\web\service\ControllerState
 
 
+_tapeet_web_pageFinder:
+    class: \tapeet\web\service\PageFinder
+    properties:
+        componentFactory: $_tapeet_web_componentFactory
+        controllerState: $_tapeet_web_controllerState
+        request: $_tapeet_http_request
+
+
 _tapeet_web_url:
     class: \tapeet\web\service\URL

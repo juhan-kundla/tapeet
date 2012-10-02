@@ -8,7 +8,6 @@ use tapeet\web\ioc\IOCProxy;
 class ComponentFactory {
 
 
-	/** @Configuration('application_package') */
 	public $applicationPackage;
 
 
@@ -86,4 +85,3 @@ class ComponentFactory {
 	}
 
 }
-?>

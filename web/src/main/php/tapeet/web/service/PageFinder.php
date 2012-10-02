@@ -10,22 +10,19 @@ use \tapeet\web\NotFoundException;
 class PageFinder implements Filter {
 
 
-	static $PARAM_COMPONENTS = '_component';
+	const PARAM_COMPONENTS = '_component';
 
 
-	/** @Service */
 	public $componentFactory;
-	/** @Service */
 	public $controllerState;
-	/** @Service */
 	public $request;
 
 
 	function execute(FilterChain $chain) {
-		$this->controllerState->requestType = ControllerState::$REQUEST_TYPE_RENDER;
+		$this->controllerState->requestType = ControllerState::REQUEST_TYPE_RENDER;
 
 		$componentNames = null;
-		$componentNamesString = $this->request->getParameter(self::$PARAM_COMPONENTS);
+		$componentNamesString = $this->request->getParameter(self::PARAM_COMPONENTS);
 		if ($componentNamesString !== null) {
 			$componentNames = explode('.', $componentNamesString);
 		} else {
@@ -44,7 +41,7 @@ class PageFinder implements Filter {
 		if ($pagePath === null) {
 			if ($submitPagePath !== null) {
 				$pagePath = $submitPagePath;
-				$this->controllerState->requestType = ControllerState::$REQUEST_TYPE_SUBMIT;
+				$this->controllerState->requestType = ControllerState::REQUEST_TYPE_SUBMIT;
 			} else {
 				$pagePath = 'IndexPage';
 			}
@@ -77,4 +74,3 @@ class PageFinder implements Filter {
 	}
 
 }
-?>
