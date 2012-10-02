@@ -41,3 +41,12 @@ _tapeet_web_pageFinder:
 
 _tapeet_web_url:
     class: \tapeet\web\service\URL
+
+
+_tapeet_web_validator:
+    class: \tapeet\web\service\Validator
+    properties:
+        controllerState: $_tapeet_web_controllerState
+        response: $_tapeet_http_response
+        url: $_tapeet_web_url
+    

@@ -9,11 +9,8 @@ use \tapeet\FilterChain;
 class Validator implements Filter {
 
 
-	/** @Service */
 	public $controllerState;
-	/** @Service */
 	public $response;
-	/** @Service */
 	public $url;
 
 
@@ -68,7 +65,7 @@ class Validator implements Filter {
 			$parameter->onValidate();
 		}
 
-		if (method_exists($component->object, 'onValidate')) {
+		if (method_exists($component, 'onValidate')) {
 			$component->onValidate();
 		}
 	}
