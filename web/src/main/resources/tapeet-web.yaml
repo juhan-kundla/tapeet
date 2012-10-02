@@ -25,6 +25,8 @@ _tapeet_web_applicationFilter:
 
 _tapeet_web_componentFactory:
     class: \tapeet\web\service\ComponentFactory
+    properties:
+        applicationPackage: $_tapeet_web_config->applicationPackage
 
 
 _tapeet_web_controllerState:
@@ -37,6 +39,14 @@ _tapeet_web_pageFinder:
         componentFactory: $_tapeet_web_componentFactory
         controllerState: $_tapeet_web_controllerState
         request: $_tapeet_http_request
+
+
+_tapeet_web_renderer:
+    class: \tapeet\web\service\Renderer
+    properties:
+        controllerState: $_tapeet_web_controllerState
+        response: $_tapeet_http_response
+        smartyCompileDir: $_tapeet_web_config->smartyCompileDir
 
 
 _tapeet_web_submitter:

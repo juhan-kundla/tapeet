@@ -9,15 +9,11 @@ use Smarty;
 use ComponentBlock;
 
 
-/** @Service('renderer') */
 class Renderer {
 
 
-	/** @Service */
 	public $controllerState;
-	/** @Service */
 	public $response;
-	/** @Configuration('smarty_compile_dir') */
 	public $smartyCompileDir;
 
 
@@ -38,7 +34,7 @@ class Renderer {
 
 		while (true) {
 			$beginRender = null;
-			if (method_exists($component->object, 'beginRender')) {
+			if (method_exists($component, 'beginRender')) {
 				$beginRender = $component->beginRender();
 			}
 
@@ -47,7 +43,7 @@ class Renderer {
 			}
 
 			$endRender = null;
-			if (method_exists($component->object, 'endRender')) {
+			if (method_exists($component, 'endRender')) {
 				$endRender = $component->endRender();
 			}
 
@@ -77,4 +73,3 @@ class Renderer {
 	}
 
 }
-?>
