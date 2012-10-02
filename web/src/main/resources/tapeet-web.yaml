@@ -11,9 +11,9 @@ _tapeet_web_application:
 
 
 _tapeet_web_applicationFilter:
-    class: \tapeet\util\ApplicationFilter
+    class: \tapeet\util\SideChainFilter
     properties:
-        application: $_tapeet_web_application
+        sideChain: $_tapeet_web_application
 
 
 _tapeet_web_componentFactory:

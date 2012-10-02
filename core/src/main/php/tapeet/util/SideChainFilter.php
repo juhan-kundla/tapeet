@@ -1,19 +1,19 @@
 <?php
-namespace tapeet\rest\util;
+namespace tapeet\util;
 
 
 use \tapeet\Filter;
 use \tapeet\FilterChain;
 
 
-class ApplicationFilter implements Filter {
+class SideChainFilter implements Filter {
 
 
-	public $application;
+	public $sideChain;
 
 
 	function execute(FilterChain $chain) {
-		$this->application->execute();
+		$this->sideChain->execute();
 		return $chain->execute();
 	}
 

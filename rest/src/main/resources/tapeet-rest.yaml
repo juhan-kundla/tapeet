@@ -5,9 +5,9 @@ _tapeet_rest_application:
 
 
 _tapeet_rest_applicationFilter:
-    class: \tapeet\rest\util\ApplicationFilter
+    class: \tapeet\util\SideChainFilter
     properties:
-        application: $_tapeet_rest_application
+        sideChain: $_tapeet_rest_application
 
 
 _tapeet_rest_controller:
