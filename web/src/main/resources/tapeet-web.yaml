@@ -1,3 +1,10 @@
+_tapeet_web_activator:
+    class: \tapeet\web\service\Activator
+    properties:
+        controllerState: $_tapeet_web_controllerState
+        request: $_tapeet_http_request
+
+
 _tapeet_web_application:
     class: \tapeet\FilterChain
     properties:

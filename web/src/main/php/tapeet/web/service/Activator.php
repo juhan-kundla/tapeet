@@ -9,9 +9,7 @@ use \tapeet\FilterChain;
 class Activator implements Filter {
 
 
-	/** @Service */
 	public $controllerState;
-	/** @Service */
 	public $request;
 
 
@@ -30,10 +28,9 @@ class Activator implements Filter {
 			$this->activate($subComponent);
 		}
 
-		if (method_exists($component->object, 'onActivate')) {
+		if (method_exists($component, 'onActivate')) {
 			$component->onActivate();
 		}
 	}
 
 }
-?>
