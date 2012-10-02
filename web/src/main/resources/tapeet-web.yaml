@@ -1,0 +1,28 @@
+_tapeet_web_application:
+    class: \tapeet\FilterChain
+    properties:
+        chain: [
+                $_tapeet_web_pageFinder
+                , $_tapeet_web_activator
+                , $_tapeet_web_validator
+                , $_tapeet_web_submitter
+                , $_tapeet_web_renderer
+            ]
+
+
+_tapeet_web_applicationFilter:
+    class: \tapeet\util\ApplicationFilter
+    properties:
+        application: $_tapeet_web_application
+
+
+_tapeet_web_componentFactory:
+    class: \tapeet\web\service\ComponentFactory
+
+
+_tapeet_web_controllerState:
+    class: \tapeet\web\service\ControllerState
+
+
+_tapeet_web_url:
+    class: \tapeet\web\service\URL
