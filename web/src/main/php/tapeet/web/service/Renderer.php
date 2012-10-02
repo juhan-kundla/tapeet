@@ -62,7 +62,7 @@ class Renderer {
 		$template->compile_dir = $this->smartyCompileDir;
 		$template->compiler_file = 'MVC_Smarty_Compiler.php';
 		$template->compiler_class = 'MVC_Smarty_Compiler';
-		$template->assign('c', $component);
+		$template->assign('this', $component);
 		foreach ($component->_components as $name => $subComponent) {
 			$componentBlock = new ComponentBlock();
 			$componentBlock->component = $subComponent;

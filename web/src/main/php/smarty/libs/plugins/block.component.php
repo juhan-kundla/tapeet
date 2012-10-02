@@ -20,7 +20,7 @@ function smarty_block_component($params, $content, &$smarty, &$repeat) {
 		$name = $type;
 	}
 
-	$parent = $smarty->_tpl_vars['c'];
+	$parent = $smarty->_tpl_vars['this'];
 	if (! isset($parent->object->_components)) {
 		$parent->_components = array();
 	}
