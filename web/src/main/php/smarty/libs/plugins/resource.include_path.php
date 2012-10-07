@@ -5,7 +5,7 @@ function smarty_resource_include_path_source($tpl_name, &$tpl_source, &$smarty) 
 }
 
 function smarty_resource_include_path_timestamp($tpl_name, &$tpl_timestamp, &$smarty) {
-	$tpl_timestamp = 0;
+	$tpl_timestamp = filemtime(stream_resolve_include_path($tpl_name));
 	return true;
 }
 
@@ -15,4 +15,3 @@ function smarty_resource_include_path_secure($tpl_name, &$smarty) {
 
 function smarty_resource_include_path_trusted($tpl_name, &$smarty) {
 }
-?>
