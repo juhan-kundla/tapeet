@@ -11,7 +11,7 @@
 	<artifactId>parent</artifactId>
 	<packaging>pom</packaging>
 	<name>tapeet-parent</name>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<description>The Tapeet framework -- parent POM</description>
 	<url>https://code.google.com/p/tapeet/</url>
 
